@@ -50,13 +50,12 @@
 
 ## `POST /api/expenses` - create a new expense
 **request**
-```js
+```json
 {
-  client: '<lient name>',
-  vat: '<vat>', // percent (example 20%, 10%, 0%)
-  price: '<price>', // price with all taxes
-  fileId: '<google drive\'s id>',
-  user: '<user name>', // fabien
+  "client": "fabien|guillaume|<client name>",
+  "price": 109.2,
+  "user": "fabien|guillaume",
+  "needRefund": true
 }
 ```
 

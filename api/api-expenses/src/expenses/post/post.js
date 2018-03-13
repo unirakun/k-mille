@@ -6,13 +6,14 @@ const append = util.promisify(google.sheets('v4').spreadsheets.values.append)
 
 module.exports = async (ctx) => {
   const { auth } = ctx.state
+  const expense = ctx.request.body
   const {
     client,
-    vat,
     price,
     fileId,
     user,
-  } = ctx.request.body
+    needRefund,
+  } = expense
 
   const resource = {
     values:
@@ -21,13 +22,11 @@ module.exports = async (ctx) => {
           format(Date.now(), 'YYYY/MM/DD'),
           client,
           'Description', // TODO
-          user === 'guillaume' ? 1 : undefined,
-          user === 'fabien' ? 1 : undefined,
-          price - (price * vat),
-          vat,
-          price * vat,
+          user,
           price,
+          needRefund ? 'yes' : 'no',
           `https://drive.google.com/file/d/${fileId}/view`,
+          JSON.stringify({ ...expense, sent: false }),
         ],
       ],
   }
