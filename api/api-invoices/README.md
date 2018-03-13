@@ -119,3 +119,27 @@
 **output**
 
 `<id>`
+
+## POST /api/emails
+**input**
+
+```json
+{
+	"fileId": "<fileId>",
+	"id": "<invoice id>",
+	"client": {
+		"name": "<client name>",
+		"emails": [
+      "<client email1>",
+      "<client email2>"
+		]
+	},
+	"lines": [
+		{ "nb": 10, "pricePerUnit": 500 },
+		{ "nb": 2, "pricePerUnit": 100 }
+	]
+}
+```
+
+**output**
+ - 200

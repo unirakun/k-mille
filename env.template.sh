@@ -9,6 +9,7 @@ export GOOGLE_AUTH_REDIRECT=http://localhost:3001/api/auth/google/callback
 export GOOGLE_SHEETS_ID=
 export GOOGLE_DRIVE_INVOICES_FILES_FOLDER=
 export GOOGLE_DRIVE_EXPENSES_FILES_FOLDER=
+export GOOGLE_DRIVE_IBAN_FILEID=
 
 ### google api keys
 export GOOGLE_VISION_API_KEY=
@@ -20,3 +21,7 @@ export GUILLAUME_ID=
 ### mailjet
 export MJ_APIKEY_PUBLIC=
 export MJ_APIKEY_PRIVATE=
+
+### accountant
+export ACCOUNTANT_EMAIL=
+export ACCOUNTANT_EMAIL_SUBJECT_INVOICES=
