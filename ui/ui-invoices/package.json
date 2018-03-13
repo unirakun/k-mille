@@ -3,6 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "proxy": "http://localhost:3001",
+  "scripts": {
+    "start": "BROWSER=none react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
   "dependencies": {
     "@k-ramel/driver-redux-little-router": "^0.10.0",
     "@k-ramel/react": "^0.10.0",
@@ -18,11 +24,5 @@
     "recompose": "^0.26.0",
     "redux-little-router": "^15.0.0",
     "tinycolor2": "^1.4.1"
-  },
-  "scripts": {
-    "start": "BROWSER=none react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
   }
 }

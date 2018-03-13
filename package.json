@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "run:start": ". ./env.sh && lerna run start --stream --scope",
-    "start:invoices": "run-p \"run:start api-invoices\" \"run:start ui-invoices\""
+    "start:invoices": "npm run run:start *-invoices",
+    "start:expenses": "npm run run:start *-expenses"
   },
   "workspaces": [
     "packages/*",
