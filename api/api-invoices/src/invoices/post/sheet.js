@@ -41,7 +41,10 @@ module.exports = fileId => async (ctx) => {
     )
 
     sheetLines = [toSheetImpl({
-      name: client.name, id, date: max(...Object.values(dates)), price: total,
+      name: client.name,
+      id,
+      date: max(...Object.values(dates)),
+      price: total,
     })]
   }
 
