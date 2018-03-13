@@ -26,7 +26,7 @@ module.exports = async (ctx) => {
           price,
           needRefund ? 'yes' : 'no',
           `https://drive.google.com/file/d/${fileId}/view`,
-          JSON.stringify(expense),
+          JSON.stringify({ ...expense, sent: false }),
         ],
       ],
   }
