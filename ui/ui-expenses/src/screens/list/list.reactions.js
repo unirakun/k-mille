@@ -18,6 +18,10 @@ export const setExpenses = ({ payload }, store) => {
   store.ui.list.set(toPrint)
 }
 
+export const goToCreate = (action, store, { router }) => {
+  router.push('/expense')
+}
+
 export const setPrices = ({ payload }, store) => {
     store.data.prices.set(payload.prices)
     store.ui.header.set({ title: 'ajout' })
