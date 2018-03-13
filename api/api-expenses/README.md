@@ -1,11 +1,35 @@
 # api-expenses
 
+## `GET /api/expenses` - returns all expenses
+**request**
+
+`empty`
+
+**respones**
+
+```json
+[
+    {
+        "client": "<fabien|guillaume|<client name>",
+        "price": 109.2,
+        "fileId": "<google file id>",
+        "user": "<fabien|guillaume>",
+        "needRefund": true,
+        "sent": false,
+        "ranges": [
+            3
+        ]
+    }
+]
+```
+
 ## `GET /api/auth/google/callback?code=` - returns tokens and profile informations
 **request**
 
 `empty`
 
 **response**
+
 ```js
 {
   tokens: { // from google
