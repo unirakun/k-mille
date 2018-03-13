@@ -5,7 +5,7 @@ const get = util.promisify(google.drive('v3').files.get)
 
 const getData = ctx => new Promise((resolve, reject) => {
   const { auth } = ctx.state
-  const { fileId } = ctx.request.body
+  const { fileId } = ctx.request.body
 
   google
     .drive({ version: 'v3', encoding: null })
@@ -14,7 +14,7 @@ const getData = ctx => new Promise((resolve, reject) => {
       {
         auth,
         fileId,
-        alt: 'media'
+        alt: 'media',
       },
       { responseType: 'stream' },
       (err, res) => {
@@ -28,12 +28,13 @@ const getData = ctx => new Promise((resolve, reject) => {
         res.data.on('end', () => {
           resolve(Buffer.concat(chunks))
         })
-    })
+      },
+    )
 })
 
 module.exports = async (ctx) => {
   const { auth } = ctx.state
-  const { fileId } = ctx.request.body
+  const { fileId } = ctx.request.body
 
   return Promise.all([
     get({
@@ -41,5 +42,5 @@ module.exports = async (ctx) => {
       fileId,
     }),
     getData(ctx),
-  ]).then(([info, data]) => ({ ...info.data, data }) )
+  ]).then(([info, data]) => ({ ...info.data, data }))
 }

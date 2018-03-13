@@ -7,14 +7,14 @@ export default [
     store.ui.header.set({ title: 'ajout' })
     store.data.fileId.set(payload.fileId)
   }),
-  when('@@ui/ON_SUBMIT')(({ payload }, store, { http }) => {
+  when('@@ui/ON_SUBMIT')(({ payload }, store, { window, http }) => {
     // add image to a <img in DOM (the source of the transformation)
-    const reader = new FileReader()
+    const reader = new window.FileReader()
     reader.onload = (e) => {
-      const img = document.getElementById('source')
+      const img = window.document.getElementById('source')
       img.src = e.target.result
 
-      requestAnimationFrame(() => {
+      window.requestAnimationFrame(() => {
         img.width = img.clientWidth
         img.height = img.clientHeight
 
@@ -22,7 +22,7 @@ export default [
         if (targetWidth < 1000) targetWidth = 1000
         const targetHeight = (img.height / img.width) * targetWidth
 
-        const canvas = document.getElementById('resize')
+        const canvas = window.document.getElementById('resize')
         canvas.width = targetWidth
         canvas.height = targetHeight
 
@@ -30,7 +30,7 @@ export default [
         picaRunner.resize(img, canvas)
           .then(result => picaRunner.toBlob(result, 'image/jpeg', 0.50))
           .then((blob) => {
-            const reader2 = new FileReader()
+            const reader2 = new window.FileReader()
             reader2.onerror = (readerE) => { store.dispatch({ type: '@@file/ON_ERROR', payload: readerE }) }
             reader2.onload = async (readerE) => {
               http('IMAGES').post('/api/images', {

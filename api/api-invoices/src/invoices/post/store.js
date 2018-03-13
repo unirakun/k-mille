@@ -1,12 +1,11 @@
 const util = require('util')
 const { google } = require('googleapis')
 
-const drive = google.drive('v3')
-const create = util.promisify(drive.files.create)
+const create = util.promisify(google.drive('v3').files.create)
 
 module.exports = doc => async (ctx) => {
-  const { client, id, dates, lines, timetable } = ctx.request.body
   const { auth } = ctx.state
+  const { client, dates } = ctx.request.body
 
   const resource = {
     name: `facture-${client.name}-${dates.print}.pdf`.toLowerCase(),

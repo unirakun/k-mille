@@ -1,7 +1,8 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'redux-little-router'
 
-export default ({ invoices, onRemove }) => (
+const List = ({ invoices, onRemove }) => (
   <div>
     <Link href="/invoice">create</Link>
 
@@ -14,3 +15,15 @@ export default ({ invoices, onRemove }) => (
     ))}
   </div>
 )
+
+List.propTypes = {
+  invoices: PropTypes.object,
+  onRemove: PropTypes.func,
+}
+
+List.defaultProps = {
+  invoices: {},
+  onRemove: undefined,
+}
+
+export default List

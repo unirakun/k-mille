@@ -4,8 +4,9 @@ export const login = (action, store, { window }) => {
 
 export const init = (action, store, drivers) => {
   const regex = /^ ?profile=/
+  const { window } = drivers
 
-  const cookie = document.cookie.split(';').find(d => regex.test(d))
+  const cookie = window.document.cookie.split(';').find(d => regex.test(d))
   if (!cookie) {
     login(action, store, drivers)
     return

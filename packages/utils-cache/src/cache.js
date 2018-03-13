@@ -6,7 +6,7 @@ module.exports = ({
   timeout = (/* 1 h */ 1 * 60 * 60 * 1000),
   maxEntries = 100,
   name = 'cache',
-  log = console.log,
+  log = console.log, // eslint-disable-line no-console
 } = {}) => {
   const cache = {}
 
@@ -14,11 +14,11 @@ module.exports = ({
     // timeout
     const keysTimeout = Object
       .entries(cache)
-      .map(([key, store]) => (store.date + timeout) > Date.now() ? undefined : key)
+      .map(([key, store]) => ((store.date + timeout) > Date.now() ? undefined : key))
       .filter(Boolean)
     if (keysTimeout.length > 0) {
       log(`[cache](${name}) timeout keys: [${keysTimeout}]`)
-       keysTimeout.forEach((key) => { delete cache[key] })
+      keysTimeout.forEach((key) => { delete cache[key] })
     }
 
     // max entries

@@ -1,6 +1,5 @@
 const util = require('util')
 const { google } = require('googleapis')
-const parse = require('date-fns/parse')
 
 const get = util.promisify(google.sheets('v4').spreadsheets.values.get)
 
@@ -14,5 +13,5 @@ module.exports = async (ctx) => {
     auth,
   })
 
-  ctx.body = response.data.values[0][0]
+  ctx.body = response.data.values[0][0] // eslint-disable-line prefer-destructuring
 }

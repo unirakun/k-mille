@@ -2,7 +2,6 @@ const sheet = require('./sheet')
 const drive = require('./drive')
 
 module.exports = async (ctx) => {
-  const { auth } = ctx.state
   const { id } = ctx.request.body
 
   if (!id || !id.includes('draft')) {

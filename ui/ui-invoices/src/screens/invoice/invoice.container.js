@@ -1,5 +1,5 @@
 import { compose } from 'recompose'
-import { inject, listen } from '@k-ramel/react'
+import { inject, listen } from '@k-ramel/react'
 import parse from 'date-fns/parse'
 import loader from 'hoc-react-loader'
 import forRoute from 'hoc-little-router'

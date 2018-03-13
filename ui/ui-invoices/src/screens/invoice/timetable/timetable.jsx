@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 const FORMATTER = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' })
 
-const Timetable = ({ date, price, onRemove }) => (
+const Timetable = ({ date, price }) => (
   <tr>
     <td>{date}</td>
     <td>{FORMATTER.format(price)}</td>
@@ -11,15 +11,13 @@ const Timetable = ({ date, price, onRemove }) => (
 )
 
 Timetable.propTypes = {
-  date: PropTypes.date,
+  date: PropTypes.instanceOf(Date),
   price: PropTypes.number,
-  onRemove: PropTypes.func,
 }
 
 Timetable.defaultProps = {
   date: undefined,
   price: 0,
-  onRemove: undefined,
 }
 
 export default Timetable

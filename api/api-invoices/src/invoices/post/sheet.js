@@ -5,7 +5,12 @@ const max = require('date-fns/max')
 
 const append = util.promisify(google.sheets('v4').spreadsheets.values.append)
 
-const toSheet = ({ body, fileId }) => ({ name, id, date, price }) => [
+const toSheet = ({ body, fileId }) => ({
+  name,
+  id,
+  date,
+  price,
+}) => [
   name,
   id.includes('draft-') ? id : Number.parseInt(id, 10),
   format(date, 'YYYY/MM/DD'),
@@ -18,7 +23,13 @@ const toSheet = ({ body, fileId }) => ({ name, id, date, price }) => [
 module.exports = fileId => async (ctx) => {
   const { auth } = ctx.state
   const { body } = ctx.request
-  const { client, id, dates, lines, timetable } = body
+  const {
+    client,
+    id,
+    dates,
+    lines,
+    timetable,
+  } = body
 
   const toSheetImpl = toSheet({ body, fileId })
 
@@ -26,10 +37,12 @@ module.exports = fileId => async (ctx) => {
   if (!timetable || timetable.length === 0) {
     const total = lines.reduce(
       (acc, { nb, pricePerUnit }) => acc + (nb * pricePerUnit * 1.2),
-      0
+      0,
     )
 
-    sheetLines = [toSheetImpl({ name: client.name, id, date: max(...Object.values(dates)), price: total })]
+    sheetLines = [toSheetImpl({
+      name: client.name, id, date: max(...Object.values(dates)), price: total,
+    })]
   }
 
   const resource = {

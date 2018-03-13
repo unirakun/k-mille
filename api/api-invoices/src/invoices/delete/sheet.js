@@ -1,7 +1,5 @@
 const util = require('util')
 const { google } = require('googleapis')
-const format = require('date-fns/format')
-const max = require('date-fns/max')
 
 const batchClear = util.promisify(google.sheets('v4').spreadsheets.values.batchClear)
 

@@ -10,5 +10,5 @@ const name = 'app'
 
 export default compose(
   provider(store),
-  listen(listeners, name)
+  listen(listeners, name),
 )(App)

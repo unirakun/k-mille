@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 const FORMATTER = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' })
 
-const Line = ({ title, nb, pricePerUnit, onRemove }) => (
+const Line = ({ title, nb, pricePerUnit }) => (
   <tr>
     <td>{title}</td>
     <td>{nb}</td>
@@ -16,14 +16,12 @@ Line.propTypes = {
   title: PropTypes.string,
   nb: PropTypes.number,
   pricePerUnit: PropTypes.number,
-  onRemove: PropTypes.func,
 }
 
 Line.defaultProps = {
   title: undefined,
   nb: 0,
   pricePerUnit: undefined,
-  onRemove: undefined,
 }
 
 export default Line
