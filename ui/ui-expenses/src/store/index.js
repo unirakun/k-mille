@@ -14,7 +14,7 @@ export default () => {
       },
       ui: {
         header: simpleObject({ defaultData: { title: 'envoi' } }),
-        list: simpleObject({ defaultData: [] })
+        list: simpleObject({ defaultData: [] }),
       },
     },
     {
