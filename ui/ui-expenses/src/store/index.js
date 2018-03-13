@@ -1,21 +1,32 @@
-import { createStore, simpleObject } from 'k-ramel'
-import listeners from './listeners'
+import { initializeCurrentLocation } from 'redux-little-router'
+import { createStore, keyValue, simpleObject } from 'k-ramel'
+import drivers, { router } from './drivers'
 
-export default createStore(
-  {
-    data: {
-      profile: simpleObject(),
-      fileId: simpleObject({ defaultData: '' }),
-      prices: simpleObject({ defaultData: [] }),
+export default () => {
+  const store = createStore(
+    {
+      router: router.getReducer(),
+      data: {
+        profile: simpleObject(),
+        fileId: simpleObject({ defaultData: '' }),
+        prices: simpleObject({ defaultData: [] }),
+        expenses: keyValue({ key: 'id' }),
+      },
+      ui: {
+        header: simpleObject({ defaultData: { title: 'envoi' } }),
+        list: simpleObject({ defaultData: [] }),
+      },
     },
-    ui: {
-      header: simpleObject({ defaultData: { title: 'envoi' } }),
+    {
+      enhancer: router.getEnhancer(),
+      drivers,
     },
-  },
-  {
-    listeners,
-    drivers: {
-      window: () => window, /* eslint-env browser */
-    },
-  },
-)
+  )
+
+  const initialLocation = store.getState().router
+  if (initialLocation) {
+    store.dispatch(initializeCurrentLocation(initialLocation))
+  }
+
+  return store
+}
