@@ -1,0 +1,10 @@
+env.sh
+
+*.log
+**/*.log
+
+*.pdf
+**/*.pdf
+
+node_modules
+**/node_modules

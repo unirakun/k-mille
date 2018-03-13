@@ -1,0 +1,19 @@
+{
+  "name": "k-mille",
+  "version": "1.0.0",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "run:start": ". ./env.sh && lerna run start --stream --scope",
+    "start:invoices": "run-p \"run:start api-invoices\" \"run:start ui-invoices\""
+  },
+  "workspaces": [
+    "packages/*",
+    "api/*",
+    "ui/*"
+  ],
+  "devDependencies": {
+    "lerna": "^2.9.0",
+    "npm-run-all": "^4.1.2"
+  }
+}
