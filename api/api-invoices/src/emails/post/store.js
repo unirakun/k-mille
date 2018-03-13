@@ -3,9 +3,8 @@ const { google } = require('googleapis')
 
 const get = util.promisify(google.drive('v3').files.get)
 
-const getData = ctx => new Promise((resolve, reject) => {
+const getData = fileId => ctx => new Promise((resolve, reject) => {
   const { auth } = ctx.state
-  const { fileId } = ctx.request.body
 
   google
     .drive({ version: 'v3', encoding: null })
@@ -41,6 +40,10 @@ module.exports = async (ctx) => {
       auth,
       fileId,
     }),
-    getData(ctx),
-  ]).then(([info, data]) => ({ ...info.data, data }))
+    getData(fileId)(ctx),
+    getData(process.env.GOOGLE_DRIVE_IBAN_FILEID)(ctx),
+  ]).then(([info, data, iban]) => ({
+    invoice: { ...info.data, data },
+    iban: { mimeType: 'application/pdf', name: 'rib-alakarte.pdf', data: iban },
+  }))
 }

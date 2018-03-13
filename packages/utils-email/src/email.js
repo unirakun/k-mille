@@ -20,10 +20,10 @@ module.exports = {
             Email: from.email,
             Name: from.name,
           },
-          To: [{
-            Email: to.email,
-            Name: to.name,
-          }],
+          To: to.map(({ email, name }) => ({
+            Email: email,
+            Name: name,
+          })),
           Cc: cc.map(({ email, name }) => ({
             Email: email,
             Name: name,
