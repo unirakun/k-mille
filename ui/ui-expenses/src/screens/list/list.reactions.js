@@ -1,13 +1,30 @@
-import { when } from 'k-ramel'
 import pica from 'pica/dist/pica'
 
-export default [
-  when('@@http/IMAGES>POST>ENDED')(({ payload }, store) => {
+export const load = (action, store, { http }) => {
+  http('EXPENSES').get('/api/expenses', null, { credentials: 'include' })
+}
+
+export const setExpenses = ({ payload }, store) => {
+  // set id
+  const expenses = payload.map(expense => ({ ...expense, id: expense.ranges[0] }))
+
+  // data
+  store.data.expenses.set(expenses)
+
+  // keys to print
+  const toPrint = expenses
+    .filter(expense => !expense.sent)
+    .map(expense => expense.id)
+  store.ui.list.set(toPrint)
+}
+
+export const setPrices = ({ payload }, store) => {
     store.data.prices.set(payload.prices)
     store.ui.header.set({ title: 'ajout' })
     store.data.fileId.set(payload.fileId)
-  }),
-  when('@@ui/ON_SUBMIT')(({ payload }, store, { window, http }) => {
+}
+
+export const submit = ({ payload }, store, { window, http }) => {
     // add image to a <img in DOM (the source of the transformation)
     const reader = new window.FileReader()
     reader.onload = (e) => {
@@ -43,8 +60,4 @@ export default [
       })
     }
     reader.readAsDataURL(payload)
-  }),
-  when('@@ui/ON_SEND')(() => {
-    console.log('send files')
-  }),
-]
+  }
