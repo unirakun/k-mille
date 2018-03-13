@@ -6,7 +6,18 @@ import Line from './line'
 import Timetable from './timetable'
 import Total from './total'
 
-const Main = ({ ok, lines, timetable, addLine, addTimetableLine, setId, setClient, setDates, getPDF, id }) => {
+const Invoice = ({
+  ok,
+  id,
+  lines,
+  timetable,
+  addLine,
+  addTimetableLine,
+  setId,
+  setClient,
+  setDates,
+  getPDF,
+}) => {
   if (ok) return 'OK !'
 
   return (
@@ -60,7 +71,7 @@ const Main = ({ ok, lines, timetable, addLine, addTimetableLine, setId, setClien
           <tr><td>Title</td><td>number of units</td><td>price per unit</td><td>price</td></tr>
         </thead>
         <tbody>
-          {lines.map(id => <Line key={id} id={id} />)}
+          {lines.map(line => <Line key={line} id={line} />)}
           <Total />
         </tbody>
       </table>
@@ -80,7 +91,7 @@ const Main = ({ ok, lines, timetable, addLine, addTimetableLine, setId, setClien
           <tr><td>Date</td><td>Price</td></tr>
         </thead>
         <tbody>
-          {timetable.map(id => <Timetable key={id} id={id} />)}
+          {timetable.map(time => <Timetable key={time} id={time} />)}
         </tbody>
       </table>
 
@@ -89,12 +100,30 @@ const Main = ({ ok, lines, timetable, addLine, addTimetableLine, setId, setClien
   )
 }
 
-Main.propTypes = {
+Invoice.propTypes = {
+  ok: PropTypes.bool,
+  id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   lines: PropTypes.array,
+  timetable: PropTypes.array,
+  addLine: PropTypes.func,
+  addTimetableLine: PropTypes.func,
+  setId: PropTypes.func,
+  setClient: PropTypes.func,
+  setDates: PropTypes.func,
+  getPDF: PropTypes.func,
 }
 
-Main.defaultProps = {
+Invoice.defaultProps = {
+  ok: false,
+  id: undefined,
   lines: [],
+  timetable: [],
+  addLine: undefined,
+  addTimetableLine: undefined,
+  setId: undefined,
+  setClient: undefined,
+  setDates: undefined,
+  getPDF: undefined,
 }
 
-export default Main
+export default Invoice

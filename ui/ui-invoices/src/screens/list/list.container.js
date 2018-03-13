@@ -11,6 +11,6 @@ export default compose(
   listen(listeners, screenName),
   inject(store => ({
     invoices: store.data.invoices.getAsArray(),
-    onRemove: (id) => store.dispatch({ type: '@@ui/ON_REMOVE', payload: id }),
+    onRemove: id => store.dispatch({ type: '@@ui/ON_REMOVE', payload: id }),
   })),
 )(Component)

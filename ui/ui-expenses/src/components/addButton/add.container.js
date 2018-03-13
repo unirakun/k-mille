@@ -1,12 +1,12 @@
 import { inject } from '@k-ramel/react'
 import Component from './add'
 
-export default inject(store => ({
+export default inject((store, props, { window }) => ({
   selectFile: () => {
-    document.getElementById('file').click()
+    window.document.getElementById('file').click()
   },
   onFileSelected: () => {
-    document.getElementById('fileSubmit').click()
+    window.document.getElementById('fileSubmit').click()
   },
   onSubmit: (e) => {
     e.preventDefault()

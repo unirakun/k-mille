@@ -15,7 +15,7 @@ export default createStore(
   {
     listeners,
     drivers: {
-      window: () => window,
+      window: () => window, /* eslint-env browser */
     },
   },
 )

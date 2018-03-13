@@ -54,12 +54,12 @@ app.use(async (ctx) => {
     // route not found
     ctx.response.status = 404
   } catch (ex) {
-    console.error(ex)
+    console.error(ex) // eslint-disable-line no-console
     ctx.response.status = 500
   }
 })
 
 const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
-  console.log(`Listening to ${PORT}`)
+  console.log(`Listening to ${PORT}`) // eslint-disable-line no-console
 })

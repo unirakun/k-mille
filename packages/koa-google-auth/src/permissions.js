@@ -11,7 +11,7 @@ const checkPermissions = async (ctx) => {
   const validated = cache.get(credentials)
   if (validated !== undefined) return validated
 
-  console.log(`[googleAuth] getting google profile of ${profile.name} (${profile.id})`)
+  console.log(`[koa-google-auth] getting google profile of ${profile.name} (${profile.id})`) // eslint-disable-line no-console
   const raw = await get({ userId: 'me', auth })
   const googleProfile = raw.data
 
@@ -28,7 +28,7 @@ module.exports = ({ oAuth2 }) => async (ctx, next) => {
   const profile = (profileString || '').replace('profile=', '')
 
   if (!profile) {
-    console.error('no cookie')
+    console.error('[koa-google-auth] no cookie') // eslint-disable-line no-console
     ctx.response.status = 401
     return
   }
@@ -36,7 +36,7 @@ module.exports = ({ oAuth2 }) => async (ctx, next) => {
   const { tokens, id, name } = JSON.parse(profile)
 
   if (!tokens) {
-    console.error('no tokens in cookies')
+    console.error('[koa-google-auth] no tokens in cookies') // eslint-disable-line no-console
     ctx.response.status = 401
     return
   }

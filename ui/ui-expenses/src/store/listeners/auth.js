@@ -3,10 +3,10 @@ export const login = (action, store, { window }) => {
 }
 
 export const init = (action, store, drivers) => {
-  const { http } = drivers
+  const { http, window } = drivers
   const regex = /^ ?profile=/
 
-  const cookie = document.cookie.split(';').find(d => regex.test(d))
+  const cookie = window.document.cookie.split(';').find(d => regex.test(d))
   if (!cookie) {
     login(action, store, drivers)
     return

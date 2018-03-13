@@ -1,4 +1,3 @@
-const fs = require('fs')
 const PDFDocument = require('pdfkit')
 const { format } = require('date-fns')
 
@@ -10,7 +9,13 @@ const MARGIN = 20
 const FORMATTER = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' })
 
 module.exports = (ctx) => {
-  const { client, id, dates, lines, timetable } = ctx.request.body
+  const {
+    client,
+    id,
+    dates,
+    lines,
+    timetable,
+  } = ctx.request.body
 
   const doc = new PDFDocument()
 
@@ -22,8 +27,7 @@ module.exports = (ctx) => {
 
     doc.text(' ')
 
-    let x = doc.x
-    let y = doc.y
+    let { x, y } = doc
     doc.font('bold').text('Prestataire', MARGIN, y, { width: MAX_WIDTH - MARGIN, align: 'left' }).font('regular')
     doc.text('ALAKARTE', MARGIN, doc.y, { width: MAX_WIDTH - MARGIN, align: 'left' })
     doc.text('SIREN : 837 609 890', MARGIN, doc.y, { width: MAX_WIDTH - MARGIN, align: 'left' })
@@ -41,7 +45,7 @@ module.exports = (ctx) => {
     doc.text(`${client.city}`, 0, doc.y, { width: MAX_WIDTH - MARGIN, align: 'right' })
 
     doc.fontSize(48)
-    doc.text(`Facture`, 0, 200, {
+    doc.text('Facture', 0, 200, {
       width: MAX_WIDTH,
       align: 'center',
     })
@@ -54,16 +58,16 @@ module.exports = (ctx) => {
       .font('bold')
       .text(format(dates.print, 'DD/MM/YYYY'), { align: 'right' })
       .font('regular')
-      doc
+    doc
       .text('Date de fin de mission : ', 392, doc.y, { width: 158, continued: true })
       .font('bold')
       .text(format(dates.end, 'DD/MM/YYYY'), { align: 'right' })
       .font('regular')
 
-    y = doc.y
+    y = doc.y // eslint-disable-line prefer-destructuring
     y += 20
     x = MARGIN * 3
-    let height = 20
+    const height = 20
     let width = MAX_WIDTH - (6 * MARGIN)
 
     // header
@@ -78,7 +82,7 @@ module.exports = (ctx) => {
 
     x += (MARGIN * 15.5)
     width = 30
-    doc.rect(x , y, width, height).stroke()
+    doc.rect(x, y, width, height).stroke()
     doc.text('Nb', x, y + 4, { width, align: 'center' })
 
     x += width
@@ -94,7 +98,11 @@ module.exports = (ctx) => {
 
     // lines
     let total = 0
-    lines.forEach(({ title, nb, pricePerUnit, unit }) => {
+    lines.forEach(({
+      title,
+      nb,
+      pricePerUnit,
+    }) => {
       // reinit
       width = MAX_WIDTH - (6 * MARGIN)
       x = MARGIN * 3
@@ -107,7 +115,7 @@ module.exports = (ctx) => {
 
       x += (MARGIN * 15.5)
       width = 30
-      doc.rect(x , y, width, height).stroke()
+      doc.rect(x, y, width, height).stroke()
       doc.text(nb, x, y + 4, { width, align: 'center' })
 
       x += width
@@ -117,7 +125,7 @@ module.exports = (ctx) => {
 
       x += width
       width = 80
-      let sub = nb * pricePerUnit
+      const sub = nb * pricePerUnit
       total += sub
       doc.text(FORMATTER.format(sub), x, y + 4, { width: width - 5, align: 'right' })
     })
@@ -125,13 +133,32 @@ module.exports = (ctx) => {
     // totals
     const totalTTC = FORMATTER.format(total * 1.2)
     const endLines = [
-      { bold: true, label: 'Total HT', value: FORMATTER.format(total) },
-      { label: 'TVA', value: '20%' },
-      { bold: true, label: 'Total TTC', value: totalTTC, backgroundColor: '#426cfa', color: 'white' },
+      {
+        bold: true,
+        label: 'Total HT',
+        value: FORMATTER.format(total),
+      },
+      {
+        label: 'TVA',
+        value: '20%',
+      },
+      {
+        bold: true,
+        label: 'Total TTC',
+        value: totalTTC,
+        backgroundColor: '#426cfa',
+        color: 'white',
+      },
     ]
 
     // draw ending lines
-    endLines.forEach(({ bold, label, value, color = 'black', backgroundColor = 'white' }) => {
+    endLines.forEach(({
+      bold,
+      label,
+      value,
+      color = 'black',
+      backgroundColor = 'white',
+    }) => {
       doc.font('regular')
       if (bold) doc.font('bold')
 
@@ -158,7 +185,7 @@ module.exports = (ctx) => {
 
       // header
       doc.font('bold')
-      y = doc.y
+      y = doc.y // eslint-disable-line prefer-destructuring
       x = (MARGIN * 15.5) + 30 + 40
       width = 82
       doc.rect(x, y, width, height).fill('#7901c3')
@@ -169,7 +196,7 @@ module.exports = (ctx) => {
       x += width
       width = 90
       doc.rect(x, y, width, height).fill('#7901c3')
-      doc.rect(x , y, width, height).stroke()
+      doc.rect(x, y, width, height).stroke()
       doc.fill('white')
       doc.text('Montant TTC', x, y + 4, { width: width - 15, align: 'right' })
 
@@ -227,7 +254,7 @@ module.exports = (ctx) => {
       MAX_HEIGHT - 95,
     )
     doc.text(
-      ' - pénalités de retard : 3 fois le taux d’intérêt légal majorées d’une indemnité forfaitaire de 40 € pour fais de recouvrement. Si les frais de recouvrement réellement engagés sont supérieurs au montant forfaitaire de 40 €, une indemnisation complémentaire sur justification peut être demandée.',
+      ' - pénalités de retard : 3 fois le taux d’intérêt légal majorées d’une indemnité forfaitaire de 40 € pour fais de recouvrement. Si les frais de recouvrement réellement engagés sont supérieurs au montant forfaitaire de 40 €, une indemnisation complémentaire sur justification peut être demandée.', // eslint-disable-line max-len
       MARGIN * 2,
       doc.y,
       { width: MAX_WIDTH - (4 * MARGIN), align: 'justify' },
