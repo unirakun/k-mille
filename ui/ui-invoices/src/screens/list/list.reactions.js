@@ -1,5 +1,5 @@
 export const load = (action, store, { http }) => {
-  http('INVOICES').get('/api/invoices', null)
+  http('INVOICES').get('/api/invoices')
 }
 
 export const set = ({ payload }, store) => {

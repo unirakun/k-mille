@@ -23,7 +23,7 @@ export const setOk = async (action, store) => {
 }
 
 export const getLastId = (action, store, { http }) => {
-  http('LAST_ID').get('/api/lastid', null)
+  http('LAST_ID').get('/api/lastid')
 }
 
 export const setMaxId = ({ payload }, store) => {

@@ -12,7 +12,7 @@ const Price = ({ price, selected }) => (
 )
 
 Price.propTypes = {
-  price: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
   selected: PropTypes.bool,
 }
 
