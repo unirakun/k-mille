@@ -1,12 +1,16 @@
 import React from 'react'
 import Header from './components/header'
-import Main from './screens/main'
+import List from './screens/list'
+import Prices from './screens/prices'
 import styles from './app.styles'
 
 const App = () => (
   <div className={styles.container}>
     <Header />
-    <Main />
+
+    {/* screens */}
+    <List />
+    <Prices />
   </div>
 )
 
