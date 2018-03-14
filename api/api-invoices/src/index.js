@@ -1,5 +1,7 @@
 /* eslint-disable global-require */
 const Koa = require('koa')
+const conditional = require('koa-conditional-get')
+const etag = require('koa-etag')
 const bodyParser = require('koa-bodyparser')
 const serve = require('koa-static')
 const compress = require('koa-compress')
@@ -21,6 +23,8 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 app.use(logs())
+app.use(conditional())
+app.use(etag())
 app.use(compress())
 app.use(bodyParser())
 app.use(googleAuth({
