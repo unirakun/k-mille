@@ -15,7 +15,7 @@ export const getPDF = (action, store, { http }) => {
     timetable: store.ui.timetable.getAsArray(),
   }
 
-  http('PDF').post('/api/invoices', body, { credentials: 'include' })
+  http('PDF').post('/api/invoices', body)
 }
 
 export const setOk = async (action, store) => {
@@ -23,7 +23,7 @@ export const setOk = async (action, store) => {
 }
 
 export const getLastId = (action, store, { http }) => {
-  http('LAST_ID').get('/api/lastid', null, { credentials: 'include' })
+  http('LAST_ID').get('/api/lastid', null)
 }
 
 export const setMaxId = ({ payload }, store) => {

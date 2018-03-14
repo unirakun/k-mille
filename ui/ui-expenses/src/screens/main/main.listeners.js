@@ -36,7 +36,7 @@ export default [
               http('IMAGES').post('/api/images', {
                 image: readerE.target.result.replace(/data:.*;base64,/, ''),
                 user: 'fabien',
-              }, { credentials: 'include' })
+              })
             }
             reader2.readAsDataURL(blob)
           })

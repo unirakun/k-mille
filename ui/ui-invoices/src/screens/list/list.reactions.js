@@ -1,5 +1,5 @@
 export const load = (action, store, { http }) => {
-  http('INVOICES').get('/api/invoices', null, { credentials: 'include' })
+  http('INVOICES').get('/api/invoices', null)
 }
 
 export const set = ({ payload }, store) => {
@@ -9,7 +9,7 @@ export const set = ({ payload }, store) => {
 export const remove = async ({ payload }, store, { http }) => {
   const { id, ranges, fileId } = store.data.invoices.get(payload)
 
-  await http('INVOICES').delete('/api/invoices', { id, ranges, fileId }, { credentials: 'include' })
+  await http('INVOICES').delete('/api/invoices', { id, ranges, fileId })
 
   store.data.invoices.remove(id)
 }
