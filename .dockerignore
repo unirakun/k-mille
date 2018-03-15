@@ -1,0 +1,14 @@
+*
+!package.json
+!lerna.json
+
+!api/api-invoices/src
+!api/api-invoices/resources
+!api/api-invoices/package.json
+
+!packages/*
+
+!ui/ui-invoices/src
+!ui/ui-invoices/public
+!ui/ui-invoices/yarn.lock
+!ui/ui-invoices/package.json
