@@ -6,8 +6,8 @@
   "license": "MIT",
   "proxy": "http://localhost:3001/",
   "scripts": {
-    "start": "NODE_PATH=src BROWSER=none react-scripts start",
-    "build": "NODE_PATH=src react-scripts build",
+    "start": "cross-env NODE_PATH=src BROWSER=none react-scripts start",
+    "build": "cross-env NODE_PATH=src react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
@@ -28,5 +28,8 @@
     "recompose": "^0.26.0",
     "redux-little-router": "^15.0.0",
     "tinycolor2": "^1.4.1"
+  },
+  "devDependencies": {
+    "cross-env": "^5.1.4"
   }
 }
