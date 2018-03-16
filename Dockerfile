@@ -1,18 +1,18 @@
-### BUILD FRONT
-# invoices
-FROM node:9-alpine AS invoices-builder
+# build front
+FROM node:9-alpine as builder
 WORKDIR /usr/src/app
-COPY ui/ui-invoices/package.json ui/ui-invoices/yarn.lock ./
+ARG app
+COPY ui/ui-$app/package.json ./
 RUN yarn install
-COPY ui/ui-invoices/ .
+COPY ui/ui-$app/ .
 RUN yarn build
 
-FROM node:9-alpine AS kmille-invoices
+FROM node:9-alpine
 WORKDIR /usr/src/app
 COPY package.json lerna.json ./
 COPY packages ./packages
-COPY api/api-invoices ./api/api-invoices
+ARG app
+COPY api/api-$app ./api/api-$app
 RUN yarn install
-COPY --from=invoices-builder /usr/src/app/build ./api/api-invoices/build
-RUN node api/api-invoices/src/index.js
+COPY --from=builder /usr/src/app/build ./api/api-$app/build
 EXPOSE 3001

@@ -1,0 +1,61 @@
+version: '3.2'
+services:
+  invoices:
+    image: invoices
+    user: "node"
+    working_dir: /usr/src/app
+    command: "node ./api/api-invoices/src/index.js"
+    restart: always
+    ports:
+      - target: 3001
+        published: 8001
+        protocol: tcp
+        mode: host
+    labels:
+      - "traefik.port=8001"
+      - "traefik.frontend.rule=Host:invoices.<DNS>"
+      - "traefik.frontend.entryPoints=https"
+    environment:
+      - NODE_ENV=production
+      - GOOGLE_AUTH_CLIENT_ID=
+      - GOOGLE_AUTH_CLIENT_SECRET=
+      - GOOGLE_AUTH_REDIRECT=http://localhost:3001/api/auth/google/callback
+      - GOOGLE_SHEETS_ID=
+      - GOOGLE_DRIVE_INVOICES_FILES_FOLDER=
+      - GOOGLE_VISION_API_KEY=
+      - FABIEN_ID=
+      - GUILLAUME_ID=
+      - MJ_APIKEY_PUBLIC=
+      - MJ_APIKEY_PRIVATE=
+      - ACCOUNTANT_EMAIL=
+      - ACCOUNTANT_EMAIL_SUBJECT_INVOICES="ALAKARTE – FACTURE DE VENTE"
+  
+  expenses:
+    image: expenses
+    user: "node"
+    working_dir: /usr/src/app
+    command: "node ./api/api-expenses/src/index.js"
+    restart: always
+    ports:
+      - target: 3001
+        published: 8002
+        protocol: tcp
+        mode: host
+    labels:
+      - "traefik.port=8002"
+      - "traefik.frontend.rule=Host:expenses.<DNS>"
+      - "traefik.frontend.entryPoints=https"
+    environment:
+      - NODE_ENV=production
+      - GOOGLE_AUTH_CLIENT_ID=
+      - GOOGLE_AUTH_CLIENT_SECRET=
+      - GOOGLE_AUTH_REDIRECT=http://localhost:3001/api/auth/google/callback
+      - GOOGLE_SHEETS_ID=
+      - GOOGLE_DRIVE_EXPENSES_FILES_FOLDER=
+      - GOOGLE_DRIVE_IBAN_FILEID=
+      - GOOGLE_VISION_API_KEY=
+      - FABIEN_ID=
+      - GUILLAUME_ID=
+      - MJ_APIKEY_PUBLIC=
+      - MJ_APIKEY_PRIVATE=
+

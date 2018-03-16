@@ -2,13 +2,20 @@
 !package.json
 !lerna.json
 
+!packages/*
+
 !api/api-invoices/src
 !api/api-invoices/resources
 !api/api-invoices/package.json
+!api/api-expenses/src
+!api/api-expenses/resources
+!api/api-expenses/package.json
 
-!packages/*
 
 !ui/ui-invoices/src
 !ui/ui-invoices/public
-!ui/ui-invoices/yarn.lock
 !ui/ui-invoices/package.json
+
+!ui/ui-expenses/src
+!ui/ui-expenses/public
+!ui/ui-expenses/package.json
