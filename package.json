@@ -7,6 +7,9 @@
     "run:start": ". ./env.sh && lerna run start --stream --scope",
     "start:invoices": "npm run run:start *-invoices",
     "start:expenses": "npm run run:start *-expenses",
+    "run:build": "lerna run build --stream --scope",
+    "build:invoices": "npm run run:build ui-invoices",
+    "build:expenses": "npm run run:build ui-expenses",
     "lint:js": "eslint **/**/src/ --ext js,jsx",
     "ci": "npm run lint:js"
   },
