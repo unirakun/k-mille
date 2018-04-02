@@ -10,5 +10,6 @@ export default compose(
   forRoute.absolute(screenName),
   inject(store => ({
     prices: store.data.prices.get(),
+    fileId: store.data.fileId.get(),
   })),
 )(Component)
