@@ -9,7 +9,7 @@ const logs = require('koa-logs')
 const app = new Koa()
 
 if (process.env.NODE_ENV === 'production') {
-  app.use(serve('../build', { gzip: true, br: true }))
+  app.use(serve('./build', { gzip: true, br: true }))
 } else {
   const proxy = require('koa-proxy')
 
@@ -60,6 +60,18 @@ app.use(async (ctx) => {
 })
 
 const PORT = process.env.PORT || 3001
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`Listening to ${PORT}`) // eslint-disable-line no-console
+})
+
+const interrupt = sigName => () => {
+  console.info(`caught interrupt signal -${sigName}-`)
+
+  console.info('closing HTTP socket...')
+  server.close(() => {
+    process.exit(0)
+  })
+}
+['SIGUSR1', 'SIGINT', 'SIGTERM', 'SIGPIPE', 'SIGHUP', 'SIGBREAK', 'SIGWINCH'].forEach((sigName) => {
+  process.on(sigName, interrupt(sigName))
 })
