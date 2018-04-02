@@ -15,7 +15,7 @@ module.exports = ({
   const app = new Koa()
 
   if (process.env.NODE_ENV === 'production') {
-    app.use(serve('../build', { gzip: true, br: true }))
+    app.use(serve('./build', { gzip: true, br: true }))
   } else {
     const proxy = require('koa-proxy')
 

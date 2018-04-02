@@ -9,9 +9,9 @@
   },
   "dependencies": {
     "date-fns": "^1.29.0",
-    "googleapis": "^26.0.1",
+    "googleapis": "^27.0.0",
     "lodash": "^4.17.5",
-    "node-fetch": "^2.0.0",
+    "node-fetch": "^2.1.2",
     "server": "1.0.0",
     "streamifier": "^0.1.1"
   }
