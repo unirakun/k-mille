@@ -1,4 +1,4 @@
-api.env
+env.sh
 
 *.log
 **/*.log
