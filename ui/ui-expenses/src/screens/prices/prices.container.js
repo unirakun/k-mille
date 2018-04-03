@@ -12,5 +12,8 @@ export default compose(
   listen(listeners),
   inject(store => ({
     prices: store.data.prices.get(),
+    showInput: store.ui.prices.showInput.get(),
+    toggleInput: () => store.dispatch('@@ui/ON_TOGGLE_INPUT'),
+    onChange: e => store.dispatch({ type: '@@ui/PRICE_CHANGED', payload: e.target.value }),
   })),
 )(Component)
