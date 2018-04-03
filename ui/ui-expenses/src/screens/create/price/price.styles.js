@@ -14,14 +14,15 @@ export default css({
     select('& + div', {
       padding: '.7em',
       minWidth: '4em',
-      backgroundColor: colors.blue,
+      border: `2px solid ${colors.blue}`,
       borderRadius: '3px',
       fontSize: '14px',
-      color: 'white',
+      color: colors.blue,
       textAlign: 'center',
     }),
     select(':checked + div', {
-      filter: 'brightness(75%)',
+      backgroundColor: colors.blue,
+      color: 'white',
     }),
   ),
 })

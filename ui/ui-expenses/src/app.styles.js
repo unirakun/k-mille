@@ -6,6 +6,8 @@ export const colors = {
   black: '#212121',
   white: '#ffffff',
   blue: '#4d6cfa',
+  lightGrey: '#dddddd',
+  grey: '#808080',
 }
 
 export default css({
