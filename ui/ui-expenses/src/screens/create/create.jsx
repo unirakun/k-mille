@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Price from './price'
-import styles from './prices.styles'
+import styles from './create.styles'
 
-const Prices = ({
+const Create = ({
   prices,
   showInput,
   toggleInput,
@@ -29,18 +29,18 @@ const Prices = ({
   </div>
 )
 
-Prices.propTypes = {
+Create.propTypes = {
   prices: PropTypes.array,
   toggleInput: PropTypes.func,
   showInput: PropTypes.bool,
   onChange: PropTypes.func,
 }
 
-Prices.defaultProps = {
+Create.defaultProps = {
   prices: [],
   showInput: false,
   toggleInput: undefined,
   onChange: undefined,
 }
 
-export default Prices
+export default Create

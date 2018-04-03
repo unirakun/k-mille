@@ -1,5 +1,5 @@
 import { when } from 'k-ramel'
-import * as r from './prices.reactions'
+import * as r from './create.reactions'
 
 export default [
   when('@@ui/ON_SEND')(r.send),

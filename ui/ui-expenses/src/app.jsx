@@ -1,7 +1,7 @@
 import React from 'react'
 import Header from './components/header'
 import List from './screens/list'
-import Prices from './screens/prices'
+import Create from './screens/create'
 import styles from './app.styles'
 
 const App = () => (
@@ -10,7 +10,7 @@ const App = () => (
 
     {/* screens */}
     <List />
-    <Prices />
+    <Create />
   </div>
 )
 

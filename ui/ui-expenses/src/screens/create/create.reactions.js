@@ -14,7 +14,7 @@ export const send = ((action, store, { http }) => {
 })
 
 export const setPrice = (({ payload }, store) => {
-  store.ui.prices.selectedPrice.set(payload)
+  store.ui.create.selectedPrice.set(payload)
 })
 
 export const response = ((action) => {
@@ -22,5 +22,5 @@ export const response = ((action) => {
 })
 
 export const toggleInput = ((action, store) => {
-  store.ui.prices.showInput.set(!store.ui.prices.showInput.get())
+  store.ui.create.showInput.set(!store.ui.create.showInput.get())
 })

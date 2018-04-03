@@ -15,7 +15,7 @@ export default () => {
       ui: {
         header: simpleObject({ defaultData: { title: 'envoi' } }),
         list: simpleObject({ defaultData: [] }),
-        prices: {
+        create: {
           selectedPrice: simpleObject({ defaultData: 0 }),
           showInput: simpleObject({ defaultData: false }),
         },
