@@ -24,8 +24,9 @@ export const goToCreate = (action, store, { router }) => {
 
 export const setPrices = ({ payload }, store) => {
   store.data.prices.set(payload.prices)
-  store.ui.header.set({ title: 'ajout' })
   store.data.fileId.set(payload.fileId)
+  store.ui.header.set({ title: 'ajout' })
+  store.ui.create.selectedPrice.set(payload.prices[0])
 }
 
 export const submit = ({ payload }, store, { window, http }) => {
