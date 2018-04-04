@@ -13,6 +13,6 @@ export const send = ((action, store, { http }) => {
     )
 })
 
-export const response = ((action) => {
+export const respond = ((action) => {
   console.log(action)
 })

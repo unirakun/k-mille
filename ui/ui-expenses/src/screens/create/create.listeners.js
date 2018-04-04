@@ -1,7 +1,7 @@
 import { when } from 'k-ramel'
-import * as r from './create.reactions'
+import { send, respond } from './create.reactions'
 
 export default [
-  when('@@ui/ON_SEND')(r.send),
-  when('@@http/ON_SEND')(r.response),
+  when('@@ui/ON_SEND')(send),
+  when('@@http/ON_SEND')(respond),
 ]
