@@ -7,7 +7,9 @@ const Header = ({ name, avatar, title }) => (
   <div className={styles.header}>
     <img src={avatar} alt={name} className={styles.avatar} />
     <h1 className={styles.title}>{title}</h1>
-    <Send />
+    {
+      title === 'envoi' && <Send />
+    }
   </div>
 )
 
