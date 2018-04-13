@@ -13,7 +13,7 @@ const Prices = ({ prices, response, add }) => {
           <Price key={price} price={price} selected={price === defaultSelected} />
         ))}
       </div>
-      <button onClick={add}>👍</button>
+      <button onClick={add}>ADD</button>
       <div>{response}</div>
     </div>
   )
