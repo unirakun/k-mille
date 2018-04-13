@@ -1,4 +1,4 @@
-export const send = ((action, store, { http }) => {
+export const add = ((action, store, { http }) => {
   http('EXPENSES')
     .post(
       '/api/expenses',
@@ -17,6 +17,11 @@ export const setPrice = (({ payload }, store) => {
   store.ui.price.set(payload)
 })
 
-export const response = ((action) => {
-  console.log(action)
+export const response = ((action, store) => {
+  store.ui.response.set('price adding 👏')
+})
+
+export const error = (({ payload }, store) => {
+  store.ui.response.set('an error occured 🤮')
+  console.warn('error when adding price: ', payload)
 })

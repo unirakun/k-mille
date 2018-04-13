@@ -12,5 +12,7 @@ export default compose(
   listen(listeners),
   inject(store => ({
     prices: store.data.prices.get(),
+    response: store.ui.response.get(),
+    add: () => store.dispatch({ type: '@@ui/ON_ADD_PRICE' }),
   })),
 )(Component)
