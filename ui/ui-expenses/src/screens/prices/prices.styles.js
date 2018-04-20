@@ -1,13 +1,16 @@
 import css from 'css'
 
 export default css({
-  prices: {
+  block: {
     margin: '1em 1.5em',
     '> h2': {
       fontSize: '1em',
     },
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
   },
-  pricesList: {
+  buttons: {
     display: 'flex',
     justifyContent: 'space-between',
   },
