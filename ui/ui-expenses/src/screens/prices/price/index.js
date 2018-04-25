@@ -1,1 +1,1 @@
-export { default } from './price'
+export { default } from './price.container'
