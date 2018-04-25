@@ -5,7 +5,7 @@ import styles from './taxe.styles'
 const Taxe = ({ taxe, selected, onChange }) => (
   <label htmlFor={taxe} className={styles.taxe}>
     <input type="radio" id={taxe} name="taxe" className={styles.input} defaultChecked={selected} onChange={onChange} />
-    <div>{`${taxe}%`}</div>
+    <div>{`${taxe * 100}%`}</div>
   </label>
 )
 

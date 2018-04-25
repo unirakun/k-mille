@@ -4,9 +4,9 @@ import Price from './price'
 import Taxe from './taxe'
 import styles from './prices.styles'
 
-const taxes = [20, 10, 5.5]
+const taxes = [0.2, 0.1, 0.055]
 
-const Prices = ({ prices, response, add }) => {
+const Prices = ({ prices, response, add }) => (
   <Fragment>
     <div className={styles.block}>
       <h2>Prix</h2>
@@ -15,8 +15,6 @@ const Prices = ({ prices, response, add }) => {
           <Price key={price} price={price} selected={price === prices[0]} />
         ))}
       </div>
-      <button onClick={add}>ADD</button>
-      <div>{response}</div>
     </div>
     <div className={styles.block}>
       <h2>TVA</h2>
@@ -26,6 +24,8 @@ const Prices = ({ prices, response, add }) => {
         ))}
       </div>
     </div>
+    <button onClick={add}>ADD</button>
+    <div>{response}</div>
   </Fragment>
 )
 
