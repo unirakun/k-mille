@@ -12,6 +12,7 @@ module.exports = async (ctx) => {
     price,
     fileId,
     user,
+    forWhom,
     needRefund,
   } = expense
 
@@ -23,7 +24,9 @@ module.exports = async (ctx) => {
           client,
           'Description', // TODO
           user,
+          forWhom,
           price,
+          'taxe',
           needRefund ? 'yes' : 'no',
           `https://drive.google.com/file/d/${fileId}/view`,
           JSON.stringify({ ...expense, sent: false }),

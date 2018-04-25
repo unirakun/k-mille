@@ -1,31 +1,30 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styles from './who.styles'
+import styles from './forWhom.styles'
 
-const Who = ({
+const forWhom = ({
   name,
   src,
   selected,
   onChange,
 }) => (
   <label htmlFor={name} className={styles.who}>
-    <input type="radio" id={name} name="who" className={styles.input} defaultChecked={selected} onChange={onChange} />
-    {src && <img src={src} alt={name} className={styles.avatar} />}
-    {!src && <div>{name}</div>}
+    <input type="radio" id={name} name="forWhom" className={styles.input} defaultChecked={selected} onChange={onChange} />
+    <img src={src} alt={name} className={styles.avatar} />
   </label>
 )
 
-Who.propTypes = {
+forWhom.propTypes = {
   name: PropTypes.string.isRequired,
   src: PropTypes.string,
   selected: PropTypes.bool,
   onChange: PropTypes.func,
 }
 
-Who.defaultProps = {
+forWhom.defaultProps = {
   src: undefined,
   selected: false,
   onChange: undefined,
 }
 
-export default Who
+export default forWhom

@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import Price from './price'
-import Who from './who'
+import ForWho from './forWhom'
 import styles from './prices.styles'
 
 const whos = [
@@ -33,7 +33,7 @@ const Prices = ({ prices, response, add }) => (
       <h2>For whom ?</h2>
       <div className={styles.buttons}>
         {whos.map(who => (
-          <Who key={who.name} {...who} selected={who.name === whos[0].name} />
+          <ForWho key={who.name} {...who} selected={who.name === whos[0].name} />
         ))}
       </div>
     </div>
