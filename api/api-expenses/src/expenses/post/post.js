@@ -24,6 +24,7 @@ module.exports = async (ctx) => {
           client,
           'Description', // TODO
           user,
+          'forWhom',
           price,
           taxe,
           needRefund ? 'yes' : 'no',
