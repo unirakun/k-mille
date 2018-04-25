@@ -56,7 +56,7 @@ export const submit = ({ payload }, store, { window, http }) => {
           reader2.onload = async (readerE) => {
             http('IMAGES').post('/api/images', {
               image: readerE.target.result.replace(/data:.*;base64,/, ''),
-              user: 'fabien',
+              user: store.data.profile.get().name,
             }, { credentials: 'include' })
           }
           reader2.readAsDataURL(blob)

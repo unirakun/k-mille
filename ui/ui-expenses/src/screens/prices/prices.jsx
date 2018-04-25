@@ -6,7 +6,7 @@ import styles from './prices.styles'
 
 const taxes = [20, 10, 5.5]
 
-const Prices = ({ prices }) => (
+const Prices = ({ prices, response, add }) => {
   <Fragment>
     <div className={styles.block}>
       <h2>Prix</h2>
@@ -15,6 +15,8 @@ const Prices = ({ prices }) => (
           <Price key={price} price={price} selected={price === prices[0]} />
         ))}
       </div>
+      <button onClick={add}>ADD</button>
+      <div>{response}</div>
     </div>
     <div className={styles.block}>
       <h2>TVA</h2>
@@ -29,10 +31,14 @@ const Prices = ({ prices }) => (
 
 Prices.propTypes = {
   prices: PropTypes.array,
+  response: PropTypes.string,
+  add: PropTypes.func,
 }
 
 Prices.defaultProps = {
   prices: [],
+  response: '',
+  add: undefined,
 }
 
 export default Prices
