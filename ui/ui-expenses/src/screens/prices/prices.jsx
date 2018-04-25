@@ -19,7 +19,7 @@ const whos = [
   },
 ]
 
-const Prices = ({ prices }) => (
+const Prices = ({ prices, response, add }) => (
   <Fragment>
     <div className={styles.block}>
       <h2>Prix</h2>
@@ -37,15 +37,21 @@ const Prices = ({ prices }) => (
         ))}
       </div>
     </div>
+    <button onClick={add}>ADD</button>
+    <div>{response}</div>
   </Fragment>
 )
 
 Prices.propTypes = {
   prices: PropTypes.array,
+  response: PropTypes.string,
+  add: PropTypes.func,
 }
 
 Prices.defaultProps = {
   prices: [],
+  response: '',
+  add: undefined,
 }
 
 export default Prices
