@@ -4,7 +4,7 @@ import Price from './price'
 import Taxe from './taxe'
 import styles from './prices.styles'
 
-const taxes = [0.2, 0.1, 0.055]
+const taxes = [0.2, 0.1, 0.055, 0, 'n/a']
 
 const Prices = ({ prices, response, add }) => (
   <Fragment>

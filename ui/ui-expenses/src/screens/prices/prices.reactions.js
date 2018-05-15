@@ -1,11 +1,13 @@
 export const add = ((action, store, { http }) => {
+  const taxe = Number.parseFloat(store.ui.taxe.get(), 10)
+
   http('EXPENSES')
     .post(
       '/api/expenses',
       {
         client: 'CLIENT',
         price: store.ui.price.get(),
-        taxe: store.ui.taxe.get(),
+        taxe: Number.isNaN(taxe) ? '' : taxe,
         fileId: store.data.fileId.get(),
         user: store.data.profile.get().name,
         needRefund: true,

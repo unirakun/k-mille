@@ -5,6 +5,7 @@ import { colors } from 'app.styles'
 export default css({
   price: {
     display: 'inline-block',
+    margin: '.2em 0',
   },
   input: merge(
     {

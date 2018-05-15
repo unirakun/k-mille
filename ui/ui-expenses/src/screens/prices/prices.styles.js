@@ -13,5 +13,6 @@ export default css({
   buttons: {
     display: 'flex',
     justifyContent: 'space-between',
+    flexWrap: 'wrap',
   },
 })
