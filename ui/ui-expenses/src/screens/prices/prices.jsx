@@ -2,7 +2,10 @@ import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import Price from './price'
 import ForWho from './forWhom'
+import Taxe from './taxe'
 import styles from './prices.styles'
+
+const taxes = [0.2, 0.1, 0.055, 0, 'n/a']
 
 const whos = [
   {
@@ -34,6 +37,14 @@ const Prices = ({ prices, response, add }) => (
       <div className={styles.buttons}>
         {whos.map(who => (
           <ForWho key={who.name} {...who} selected={who.name === whos[0].name} />
+        ))}
+      </div>
+    </div>
+    <div className={styles.block}>
+      <h2>TVA</h2>
+      <div className={styles.buttons}>
+        {taxes.map(taxe => (
+          <Taxe key={taxe} taxe={taxe} selected={taxe === taxes[0]} />
         ))}
       </div>
     </div>
