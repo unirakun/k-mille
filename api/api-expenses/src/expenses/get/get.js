@@ -9,7 +9,7 @@ module.exports = async (ctx) => {
   const response = await get({
     auth,
     spreadsheetId: process.env.GOOGLE_SHEETS_ID,
-    range: 'Expenses!J3:J1000',
+    range: 'Expenses!A3:A1000',
     valueRenderOption: 'UNFORMATTED_VALUE',
   })
 

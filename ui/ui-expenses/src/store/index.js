@@ -16,7 +16,7 @@ export default () => {
         header: simpleObject({ defaultData: { title: 'envoi' } }),
         list: simpleObject({ defaultData: [] }),
         price: simpleObject({ defaultData: 0 }),
-        forWhom: simpleObject({ defaultData: 0 }),
+        context: simpleObject({ defaultData: 0 }),
         taxe: simpleObject({ defaultData: 0 }),
         response: simpleObject({ defaultData: '' }),
       },

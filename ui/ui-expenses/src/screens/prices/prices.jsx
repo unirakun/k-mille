@@ -1,13 +1,13 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import Price from './price'
-import ForWho from './forWhom'
+import Context from './context'
 import Taxe from './taxe'
 import styles from './prices.styles'
 
 const taxes = [0.2, 0.1, 0.055, 0, 'n/a']
 
-const whos = [
+const contexts = [
   {
     name: 'alakarte',
     src: '/logo.png',
@@ -35,8 +35,8 @@ const Prices = ({ prices, response, add }) => (
     <div className={styles.block}>
       <h2>For whom ?</h2>
       <div className={styles.buttons}>
-        {whos.map(who => (
-          <ForWho key={who.name} {...who} selected={who.name === whos[0].name} />
+        {contexts.map(context => (
+          <Context key={context.name} {...context} selected={context.name === contexts[0].name} />
         ))}
       </div>
     </div>
