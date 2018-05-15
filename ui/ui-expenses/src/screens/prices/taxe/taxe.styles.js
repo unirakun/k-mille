@@ -3,7 +3,7 @@ import css from 'css'
 import { colors } from 'app.styles'
 
 export default css({
-  price: {
+  taxe: {
     display: 'inline-block',
     margin: '.2em 0',
   },
@@ -15,7 +15,7 @@ export default css({
     select('& + div', {
       padding: '.7em',
       minWidth: '4em',
-      backgroundColor: colors.blue,
+      backgroundColor: colors.green,
       borderRadius: '3px',
       fontSize: '14px',
       color: 'white',

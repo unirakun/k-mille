@@ -6,7 +6,7 @@ export const colors = {
   black: '#212121',
   white: '#ffffff',
   blue: '#4d6cfa',
-  green: '#88e894',
+  green: '#8BC34A',
 }
 
 export default css({
