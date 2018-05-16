@@ -4,9 +4,9 @@ jobs:
     machine: true
     steps:
       - checkout
-      - make -j2 build-push
-      - docker login -u ${DOCKER_USER} -p ${DOCKER_PASS}
-      - curl ${DEPLOY_URL}
+      - run: make -j2 build-push
+      - run: docker login -u ${DOCKER_USER} -p ${DOCKER_PASS}
+      - run: curl ${DEPLOY_URL}
 
   build:
     docker:
