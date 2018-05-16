@@ -4,6 +4,6 @@ build-push-expenses:
 
 build-push-invoices:
 	@docker build -t alakarte/invoices --build-arg app=invoices . --rm=true
-	@docker push alakarte/expenses
+	@docker push alakarte/invoices
 
 build-push: build-push-expenses build-push-invoices
