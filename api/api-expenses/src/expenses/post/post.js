@@ -8,10 +8,11 @@ module.exports = async (ctx) => {
   const { auth } = ctx.state
   const expense = ctx.request.body
   const {
-    client,
-    price,
     fileId,
     user,
+    context,
+    price,
+    taxe,
     needRefund,
   } = expense
 
@@ -19,14 +20,15 @@ module.exports = async (ctx) => {
     values:
       [
         [
+          JSON.stringify({ ...expense, sent: false }),
           format(Date.now(), 'YYYY/MM/DD'),
-          client,
           'Description', // TODO
           user,
+          context,
           price,
+          taxe,
           needRefund ? 'yes' : 'no',
           `https://drive.google.com/file/d/${fileId}/view`,
-          JSON.stringify({ ...expense, sent: false }),
         ],
       ],
   }

@@ -9,14 +9,10 @@
   },
   "dependencies": {
     "date-fns": "^1.29.0",
-    "googleapis": "^26.0.1",
-    "koa": "^2.5.0",
-    "koa-bodyparser": "^4.2.0",
-    "koa-compress": "^2.0.0",
-    "koa-proxy": "^0.9.0",
-    "koa-static": "^4.0.2",
+    "googleapis": "^27.0.0",
     "lodash": "^4.17.5",
-    "node-fetch": "^2.0.0",
+    "node-fetch": "^2.1.2",
+    "server": "1.0.0",
     "streamifier": "^0.1.1"
   }
 }
