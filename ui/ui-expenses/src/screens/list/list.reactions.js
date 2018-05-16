@@ -6,7 +6,9 @@ export const load = (action, store, { http }) => {
 
 export const setExpenses = ({ payload }, store) => {
   // set id
-  const expenses = payload.map(expense => ({ ...expense, id: expense.ranges[0] }))
+  const expenses = payload
+    .map(expense => ({ ...expense, id: expense.ranges[0] }))
+    .sort((cur, next) => next.date - cur.date)
 
   // data
   store.data.expenses.set(expenses)
