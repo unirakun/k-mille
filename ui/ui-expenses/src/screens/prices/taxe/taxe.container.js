@@ -1,6 +1,8 @@
-import { inject } from '@k-ramel/react'
+import { container } from 'hoc'
 import Component from './taxe'
 
-export default inject(store => ({
+const mapStore = store => ({
   onChange: e => store.dispatch({ type: '@@ui/TAXE_CHANGED', payload: e.target.id }),
-}))(Component)
+})
+
+export default container({ mapStore })(Component)

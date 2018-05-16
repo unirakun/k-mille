@@ -53,6 +53,7 @@
         {
           "ignore": [
             "css$",
+            "hoc$",
             "app.styles$"
           ]
         }

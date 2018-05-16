@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { component } from 'hoc'
 import styles from './taxe.styles'
 
 const numberFormat = new Intl.NumberFormat('fr-FR', { style: 'percent', maximumFractionDigits: 1 })
@@ -25,4 +26,4 @@ Taxe.defaultProps = {
   onChange: undefined,
 }
 
-export default Taxe
+export default component()(Taxe)

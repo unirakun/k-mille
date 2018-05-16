@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { component } from 'hoc'
 import Send from './sendButton'
 import styles from './header.styles'
 
@@ -24,4 +25,4 @@ Header.defaultProps = {
   avatar: undefined,
 }
 
-export default Header
+export default component()(Header)

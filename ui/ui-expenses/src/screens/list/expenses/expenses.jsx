@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { component } from 'hoc'
 import Expense from './expense'
 
 const Expenses = ({ expenses }) => (
@@ -26,4 +27,4 @@ Expenses.defaultProps = {
   expenses: [],
 }
 
-export default Expenses
+export default component()(Expenses)

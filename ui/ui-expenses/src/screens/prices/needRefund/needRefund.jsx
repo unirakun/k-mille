@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { component } from 'hoc'
 import styles from './needRefund.styles'
 
 const NeedRefund = ({ checked, onChange }) => (
@@ -19,4 +20,4 @@ NeedRefund.defaultProps = {
   onChange: undefined,
 }
 
-export default NeedRefund
+export default component()(NeedRefund)

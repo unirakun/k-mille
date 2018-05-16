@@ -1,7 +1,7 @@
-import { inject } from '@k-ramel/react'
+import { container } from 'hoc'
 import Component from './add'
 
-export default inject((store, props, { window }) => ({
+const mapStore = (store, props, { window }) => ({
   selectFile: () => {
     window.document.getElementById('file').click()
   },
@@ -12,5 +12,6 @@ export default inject((store, props, { window }) => ({
     e.preventDefault()
     store.dispatch({ type: '@@ui/ON_SUBMIT', payload: e.target[0].files[0] })
   },
+})
 
-}))(Component)
+export default container({ mapStore })(Component)

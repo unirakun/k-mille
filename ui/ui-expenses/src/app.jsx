@@ -1,4 +1,5 @@
 import React from 'react'
+import { component } from 'hoc'
 import Header from './components/header'
 import List from './screens/list'
 import Prices from './screens/prices'
@@ -14,4 +15,4 @@ const App = () => (
   </div>
 )
 
-export default App
+export default component()(App)

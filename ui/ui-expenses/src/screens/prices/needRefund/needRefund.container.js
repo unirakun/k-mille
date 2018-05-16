@@ -1,6 +1,8 @@
-import { inject } from '@k-ramel/react'
+import { container } from 'hoc'
 import Component from './needRefund'
 
-export default inject(store => ({
+const mapStore = store => ({
   onChange: e => store.dispatch({ type: '@@ui/NEED_REFUND_CHANGED', payload: e.target.checked }),
-}))(Component)
+})
+
+export default container({ mapStore })(Component)

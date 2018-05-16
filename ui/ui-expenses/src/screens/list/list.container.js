@@ -1,12 +1,7 @@
-import { compose } from 'recompose'
-import { listen } from '@k-ramel/react'
-import forRoute from 'hoc-little-router'
-import Component from './list'
+import { container } from 'hoc'
 import listeners from './list.listeners'
+import Component from './list'
 
 const screenName = 'list'
 
-export default compose(
-  forRoute.absolute(screenName),
-  listen(listeners, screenName),
-)(Component)
+export default container({ screenName, listeners })(Component)

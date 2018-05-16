@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
+import { component } from 'hoc'
 import Price from './price'
 import Context from './context'
 import NeedRefund from './needRefund'
@@ -84,4 +85,4 @@ Prices.defaultProps = {
   cancel: undefined,
 }
 
-export default Prices
+export default component()(Prices)

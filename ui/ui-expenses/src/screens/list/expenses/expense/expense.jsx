@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { component } from 'hoc'
 import styles from './expense.styles'
 
 const FORMATTER = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' })
@@ -37,4 +38,4 @@ Expense.defaultProps = {
   fileId: undefined,
 }
 
-export default Expense
+export default component()(Expense)

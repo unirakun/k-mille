@@ -1,4 +1,5 @@
 import React from 'react'
+import { component } from 'hoc'
 import Add from '../../components/addButton'
 import Expenses from './expenses'
 import styles from './list.styles'
@@ -14,4 +15,4 @@ const List = () => (
   </div>
 )
 
-export default List
+export default component()(List)
