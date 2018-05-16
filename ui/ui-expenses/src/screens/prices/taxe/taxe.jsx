@@ -12,10 +12,10 @@ const Taxe = ({ taxe, selected, onChange }) => (
 )
 
 Taxe.propTypes = {
-  taxe: PropTypes.oneOfType(
+  taxe: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
-  ).isRequired,
+  ]).isRequired,
   selected: PropTypes.bool,
   onChange: PropTypes.func,
 }
