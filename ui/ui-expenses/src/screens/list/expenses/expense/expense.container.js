@@ -1,4 +1,6 @@
-import { inject } from '@k-ramel/react'
+import { container } from 'hoc'
 import Component from './expense'
 
-export default inject((store, { id }) => store.data.expenses.get(id))(Component)
+const mapStore = (store, { id }) => store.data.expenses.get(id)
+
+export default container({ mapStore })(Component)

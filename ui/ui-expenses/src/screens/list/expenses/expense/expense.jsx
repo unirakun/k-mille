@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { component } from 'hoc'
 
 const Expense = ({
   client,
@@ -33,4 +34,4 @@ Expense.defaultProps = {
   fileId: undefined,
 }
 
-export default Expense
+export default component()(Expense)

@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { component } from 'hoc'
 import styles from './add.styles'
 
 const Add = ({ selectFile, onFileSelected, onSubmit }) => (
@@ -26,4 +27,4 @@ Add.propTypes = {
   onSubmit: PropTypes.func.isRequired,
 }
 
-export default Add
+export default component()(Add)

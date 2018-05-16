@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { component } from 'hoc'
 import styles from './context.styles'
 
 const Context = ({
@@ -40,4 +41,4 @@ Context.defaultProps = {
   onChange: undefined,
 }
 
-export default Context
+export default component()(Context)

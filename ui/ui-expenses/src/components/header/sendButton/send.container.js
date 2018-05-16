@@ -1,6 +1,8 @@
-import { inject } from '@k-ramel/react'
+import { container } from 'hoc'
 import Component from './send'
 
-export default inject(store => ({
+const mapStore = store => ({
   sendFiles: () => store.dispatch('@@ui/ON_SEND'),
-}))(Component)
+})
+
+export default container({ mapStore })(Component)

@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { component } from 'hoc'
 import styles from './price.styles'
 
 const FORMATTER = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' })
@@ -22,4 +23,4 @@ Price.defaultProps = {
   onChange: undefined,
 }
 
-export default Price
+export default component()(Price)

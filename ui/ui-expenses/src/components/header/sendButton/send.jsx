@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { component } from 'hoc'
 import styles from './send.styles'
 
 const Send = ({ sendFiles }) => (
@@ -11,9 +12,8 @@ const Send = ({ sendFiles }) => (
   </button>
 )
 
-
 Send.propTypes = {
   sendFiles: PropTypes.func.isRequired,
 }
 
-export default Send
+export default component()(Send)

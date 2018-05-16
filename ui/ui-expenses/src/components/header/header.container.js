@@ -1,7 +1,9 @@
-import { inject } from '@k-ramel/react'
+import { container } from 'hoc'
 import Component from './header'
 
-export default inject(store => ({
+const mapStore = store => ({
   ...store.data.profile.get(),
   ...store.ui.header.get(),
-}))(Component)
+})
+
+export default container({ mapStore })(Component)
