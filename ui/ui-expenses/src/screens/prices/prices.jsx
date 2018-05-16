@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
-import { component } from 'hoc'
+import { component } from 'ui-hocs'
 import Price from './price'
 import Context from './context'
 import NeedRefund from './needRefund'

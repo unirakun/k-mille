@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { component } from 'hoc'
+import { component } from 'ui-hocs'
 import styles from './taxe.styles'
 
 const numberFormat = new Intl.NumberFormat('fr-FR', { style: 'percent', maximumFractionDigits: 1 })

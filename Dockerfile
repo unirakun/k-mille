@@ -4,7 +4,10 @@ ARG app
 
 WORKDIR /usr/src/app
 
-COPY ui/ui-$app/package.json yarn.lock ./
+RUN mkdir -p ./ui/ui-$app
+COPY packages ./packages
+COPY ui/ui-$app/package.json ./ui/ui-$app/
+COPY package.json yarn.lock ./
 RUN yarn install
 
 COPY ui/ui-$app/ .

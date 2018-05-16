@@ -1,5 +1,5 @@
 import React from 'react'
-import { component } from 'hoc'
+import { component } from 'ui-hocs'
 import Header from './components/header'
 import List from './screens/list'
 import Prices from './screens/prices'
