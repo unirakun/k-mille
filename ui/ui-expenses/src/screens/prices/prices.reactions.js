@@ -20,6 +20,7 @@ export const add = ((action, store, { http }) => {
 export const init = (action, store) => {
   store.ui.price.set(store.data.prices.get()[0])
   store.ui.context.set('alakarte')
+  store.ui.taxe.set(0.2)
 }
 
 export const setPrice = (({ payload }, store) => store.ui.price.set(payload))
