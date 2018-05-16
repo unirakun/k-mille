@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import Price from './price'
 import Context from './context'
+import NeedRefund from './needRefund'
 import Taxe from './taxe'
 import styles from './prices.styles'
 
@@ -50,6 +51,9 @@ const Prices = ({ prices, response, add }) => (
           <Taxe key={taxe} taxe={taxe} selected={taxe === taxes[0]} />
         ))}
       </div>
+    </div>
+    <div className={styles.block}>
+      <NeedRefund />
     </div>
     <button onClick={add}>ADD</button>
     <div>{response}</div>
