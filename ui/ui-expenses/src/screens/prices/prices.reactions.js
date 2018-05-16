@@ -11,7 +11,7 @@ export const add = ((action, store, { http }) => {
         fileId: store.data.fileId.get(),
         user: store.data.profile.get().name,
         context: store.ui.context.get(),
-        needRefund: true,
+        needRefund: store.ui.needRefund.get(),
       },
       { credentials: 'include' },
     )
@@ -28,6 +28,8 @@ export const setPrice = (({ payload }, store) => store.ui.price.set(payload))
 export const setTaxe = (({ payload }, store) => store.ui.taxe.set(payload))
 
 export const setContext = (({ payload }, store) => store.ui.context.set(payload))
+
+export const setNeedRefund = (({ payload }, store) => store.ui.needRefund.set(payload))
 
 export const response = ((action, store) => store.ui.response.set('price adding 👏'))
 

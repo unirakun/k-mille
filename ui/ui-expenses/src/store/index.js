@@ -17,6 +17,7 @@ export default () => {
         list: simpleObject({ defaultData: [] }),
         price: simpleObject({ defaultData: 0 }),
         context: simpleObject({ defaultData: 0 }),
+        needRefund: simpleObject({ defaultData: false }),
         taxe: simpleObject({ defaultData: 0 }),
         response: simpleObject({ defaultData: '' }),
       },
