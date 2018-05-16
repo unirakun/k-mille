@@ -8,6 +8,7 @@ module.exports = async (ctx) => {
   const { auth } = ctx.state
   const expense = ctx.request.body
   const {
+    date,
     fileId,
     user,
     context,
@@ -21,7 +22,7 @@ module.exports = async (ctx) => {
       [
         [
           JSON.stringify({ ...expense, sent: false }),
-          format(Date.now(), 'YYYY/MM/DD'),
+          format(date, 'YYYY/MM/DD'),
           'Description', // TODO
           user,
           context,
