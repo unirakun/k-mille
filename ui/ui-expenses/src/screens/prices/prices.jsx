@@ -20,6 +20,9 @@ const contexts = [
     name: 'Guillaume',
     src: 'https://avatars1.githubusercontent.com/u/26094222?s=460&v=4',
   },
+  {
+    name: 'input',
+  },
 ]
 
 const Prices = ({ prices, response, add }) => (
@@ -33,7 +36,7 @@ const Prices = ({ prices, response, add }) => (
       </div>
     </div>
     <div className={styles.block}>
-      <h2>For whom ?</h2>
+      <h2>Contexte</h2>
       <div className={styles.buttons}>
         {contexts.map(context => (
           <Context key={context.name} {...context} selected={context.name === contexts[0].name} />

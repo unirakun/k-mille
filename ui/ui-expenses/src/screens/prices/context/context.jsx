@@ -7,12 +7,25 @@ const Context = ({
   src,
   selected,
   onChange,
-}) => (
-  <label htmlFor={name} className={styles.main}>
-    <input type="radio" id={name} name="context" className={styles.input} defaultChecked={selected} onChange={onChange} />
-    <img src={src} alt={name} className={styles.avatar} />
-  </label>
-)
+}) => {
+  if (name === 'input') {
+    return (
+      <div>
+        <label htmlFor="other">
+          Autre:
+          <input id="other" type="text" onChange={onChange} />
+        </label>
+      </div>
+    )
+  }
+
+  return (
+    <label htmlFor={name} className={styles.main}>
+      <input type="radio" id={name} name="context" className={styles.input} defaultChecked={selected} onChange={onChange} />
+      <img src={src} alt={name} className={styles.avatar} />
+    </label>
+  )
+}
 
 Context.propTypes = {
   name: PropTypes.string.isRequired,
