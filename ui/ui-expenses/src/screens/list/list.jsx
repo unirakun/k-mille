@@ -9,7 +9,7 @@ const List = () => (
     <Add />
     <div className={styles.image}>
       <canvas id="resize" height="200" width="200" />
-      <img id="source" />
+      <img id="source" alt="hidden" />
     </div>
   </div>
 )
