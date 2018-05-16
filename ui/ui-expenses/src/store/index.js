@@ -1,4 +1,5 @@
 import { createStore, keyValue, simpleObject } from 'k-ramel'
+import listeners from './listeners'
 import drivers from './drivers'
 
 export default createStore(
@@ -20,6 +21,7 @@ export default createStore(
     },
   },
   {
+    listeners,
     drivers,
   },
 )
