@@ -17,6 +17,17 @@ export const add = ((action, store, { http }) => {
     )
 })
 
+export const cancel = ((action, store, { http }) => {
+  http('IMAGES')
+    .delete(
+      `/api/images/${store.data.fileId.get()}`,
+      {},
+      { credentials: 'include' },
+    )
+})
+
+export const goBack = (action, store, { router }) => router.goBack()
+
 export const init = (action, store) => {
   store.ui.price.set(store.data.prices.get()[0])
   store.ui.context.set('alakarte')
