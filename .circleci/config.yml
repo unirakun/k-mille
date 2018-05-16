@@ -1,5 +1,13 @@
 version: 2
 jobs:
+  deploy:
+    machine: true
+    steps:
+      - checkout
+      - make -j2 build-push
+      - docker login -u ${DOCKER_USER} -p ${DOCKER_PASS}
+      - curl ${DEPLOY_URL}
+
   build:
     docker:
       - image: circleci/node:9 # waiting for a new version of upath (from react-scripts)
@@ -16,3 +24,18 @@ jobs:
             - ~/.cache/yarn
           key: dependencies-{{ checksum "package.json" }}-{{ checksum "yarn.lock" }}
       - run: yarn ci
+
+
+workflows:
+  version: 2
+  common:
+    jobs:
+       - build
+       - deploy:
+          filters:
+            branches:
+              only:
+               - master
+               - deploy
+          requires:
+            - build
