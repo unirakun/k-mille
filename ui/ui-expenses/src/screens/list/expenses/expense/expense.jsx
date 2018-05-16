@@ -3,9 +3,11 @@ import PropTypes from 'prop-types'
 import { component } from 'ui-hocs'
 import styles from './expense.styles'
 
-const FORMATTER = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' })
+const FORMATTER_EUR = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' })
+const FORMATTER_DATE = new Intl.DateTimeFormat('fr-FR', { month: 'short', day: 'numeric' })
 
 const Expense = ({
+  date,
   context,
   price,
   user,
@@ -13,8 +15,9 @@ const Expense = ({
   fileId,
 }) => (
   <tr>
+    <td>{date && FORMATTER_DATE.format(date)}</td>
     <td>{context}</td>
-    <td className={styles.price}>{FORMATTER.format(price)}</td>
+    <td className={styles.price}>{FORMATTER_EUR.format(price)}</td>
     <td>{needRefund && user}</td>
     <td className={styles.file}>
       <a href={`https://drive.google.com/file/d/${fileId}/view`}>file</a>
@@ -23,6 +26,7 @@ const Expense = ({
 )
 
 Expense.propTypes = {
+  date: PropTypes.number,
   context: PropTypes.string,
   price: PropTypes.number,
   user: PropTypes.string,
@@ -31,6 +35,7 @@ Expense.propTypes = {
 }
 
 Expense.defaultProps = {
+  date: undefined,
   context: undefined,
   price: undefined,
   user: undefined,

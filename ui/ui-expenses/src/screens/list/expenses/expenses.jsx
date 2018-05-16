@@ -7,6 +7,7 @@ const Expenses = ({ expenses }) => (
   <table>
     <thead>
       <tr>
+        <th>Date</th>
         <th>Context</th>
         <th>Price</th>
         <th>Refound</th>
