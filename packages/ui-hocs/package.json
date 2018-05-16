@@ -2,6 +2,7 @@
   "name": "ui-hocs",
   "version": "1.0.0",
   "description": "UI / hocs",
+  "main": "dist/ui-hocs.es.js",
   "module": "dist/ui-hocs.es.js",
   "license": "MIT",
   "private": true,
