@@ -26,7 +26,12 @@ const contexts = [
   },
 ]
 
-const Prices = ({ prices, response, add }) => (
+const Prices = ({
+  prices,
+  response,
+  add,
+  cancel,
+}) => (
   <Fragment>
     <div className={styles.block}>
       <h2>Prix</h2>
@@ -55,7 +60,12 @@ const Prices = ({ prices, response, add }) => (
     <div className={styles.block}>
       <NeedRefund />
     </div>
-    <button onClick={add}>ADD</button>
+    <div className={styles.block}>
+      <div className={styles.buttons}>
+        <button onClick={add}>ADD</button>
+        <button onClick={cancel}>CANCEL</button>
+      </div>
+    </div>
     <div>{response}</div>
   </Fragment>
 )
@@ -64,12 +74,14 @@ Prices.propTypes = {
   prices: PropTypes.array,
   response: PropTypes.string,
   add: PropTypes.func,
+  cancel: PropTypes.func,
 }
 
 Prices.defaultProps = {
   prices: [],
   response: '',
   add: undefined,
+  cancel: undefined,
 }
 
 export default Prices

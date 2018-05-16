@@ -14,5 +14,6 @@ export default compose(
     prices: store.data.prices.get(),
     response: store.ui.response.get(),
     add: () => store.dispatch({ type: '@@ui/ON_ADD_PRICE' }),
+    cancel: () => store.dispatch({ type: '@@ui/ON_CANCEL' }),
   })),
 )(Component)
