@@ -1,7 +1,7 @@
 import pica from 'pica/dist/pica'
 
 export const load = (action, store, { http }) => {
-  http('EXPENSES').get('/api/expenses', null, { credentials: 'include' })
+  http('EXPENSES').get('/api/expenses')
 }
 
 export const setExpenses = ({ payload }, store) => {
@@ -57,7 +57,7 @@ export const submit = ({ payload }, store, { window, http }) => {
             http('IMAGES').post('/api/images', {
               image: readerE.target.result.replace(/data:.*;base64,/, ''),
               user: store.data.profile.get().name,
-            }, { credentials: 'include' })
+            })
           }
           reader2.readAsDataURL(blob)
         })

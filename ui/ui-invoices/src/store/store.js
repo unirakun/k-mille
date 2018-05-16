@@ -1,10 +1,9 @@
-import { initializeCurrentLocation } from 'redux-little-router'
 import { createStore, keyValue, simpleObject } from 'k-ramel'
-import drivers, { router } from './drivers'
+import listeners from './listeners'
+import drivers from './drivers'
 
-export default () => {
-  const store = createStore({
-    router: router.getReducer(),
+export default createStore(
+  {
     data: {
       invoices: keyValue({ key: 'id' }),
       profile: simpleObject(),
@@ -18,15 +17,9 @@ export default () => {
       dates: simpleObject(),
       total: simpleObject({ defaultData: 0 }),
     },
-  }, {
-    enhancer: router.getEnhancer(),
+  },
+  {
+    listeners,
     drivers,
-  })
-
-  const initialLocation = store.getState().router
-  if (initialLocation) {
-    store.dispatch(initializeCurrentLocation(initialLocation))
-  }
-
-  return store
-}
+  },
+)

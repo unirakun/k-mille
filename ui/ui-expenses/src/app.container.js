@@ -1,14 +1,5 @@
-import { compose } from 'recompose'
-import { provider, listen } from '@k-ramel/react'
+import { provider } from '@k-ramel/react'
 import App from './app'
-import createStore from './store'
-import listeners from './app.listeners'
+import store from './store'
 
-const store = createStore()
-
-const name = 'app'
-
-export default compose(
-  provider(store),
-  listen(listeners, name),
-)(App)
+export default provider(store)(App)
