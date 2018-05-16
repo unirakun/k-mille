@@ -1,4 +1,4 @@
-import { container } from 'hoc'
+import { container } from 'ui-hocs'
 import listeners from './list.listeners'
 import Component from './list'
 

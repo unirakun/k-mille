@@ -1,4 +1,4 @@
-import { container } from 'hoc'
+import { container } from 'ui-hocs'
 import Component from './taxe'
 
 const mapStore = store => ({

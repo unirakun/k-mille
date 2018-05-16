@@ -1,4 +1,4 @@
-import { container } from 'hoc'
+import { container } from 'ui-hocs'
 import Component from './add'
 
 const mapStore = (store, props, { window }) => ({

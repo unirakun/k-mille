@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { component } from 'hoc'
+import { component } from 'ui-hocs'
 import Expense from './expense'
 
 const Expenses = ({ expenses }) => (

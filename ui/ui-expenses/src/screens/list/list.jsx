@@ -1,5 +1,5 @@
 import React from 'react'
-import { component } from 'hoc'
+import { component } from 'ui-hocs'
 import Add from '../../components/addButton'
 import Expenses from './expenses'
 import styles from './list.styles'
