@@ -10,7 +10,7 @@ export const add = ((action, store, { http }) => {
         taxe: Number.isNaN(taxe) ? '' : taxe,
         fileId: store.data.fileId.get(),
         user: store.data.profile.get().name,
-        context: store.ui.context.get(),
+        context: store.ui.context.get().trim(),
         needRefund: store.ui.needRefund.get(),
       },
       { credentials: 'include' },
