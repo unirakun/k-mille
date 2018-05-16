@@ -5,7 +5,7 @@ export const add = ((action, store, { http }) => {
     .post(
       '/api/expenses',
       {
-        date: new Date().getTime(),
+        date: Date.now(),
         client: 'CLIENT',
         price: store.ui.price.get(),
         taxe: Number.isNaN(taxe) ? '' : taxe,
