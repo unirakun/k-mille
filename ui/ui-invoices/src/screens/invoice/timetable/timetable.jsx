@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { component } from 'ui-hocs'
 
 const FORMATTER = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' })
 
@@ -20,4 +21,4 @@ Timetable.defaultProps = {
   price: 0,
 }
 
-export default Timetable
+export default component()(Timetable)

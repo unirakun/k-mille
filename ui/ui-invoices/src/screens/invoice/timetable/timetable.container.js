@@ -1,6 +1,8 @@
-import { inject } from '@k-ramel/react'
+import { container } from 'ui-hocs'
 import Component from './timetable'
 
-export default inject((store, { id }) => ({
+const mapStore = (store, { id }) => ({
   ...store.ui.timetable.get(id),
-}))(Component)
+})
+
+export default container({ mapStore })(Component)
