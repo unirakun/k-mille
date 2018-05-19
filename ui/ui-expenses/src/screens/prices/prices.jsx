@@ -39,39 +39,42 @@ const Prices = ({
     <div className={styles.block}>
       <Capture />
     </div>
+    {prices.length > 0 &&
     <div className={styles.block}>
-      <h2>Prix</h2>
-      <div className={styles.buttons}>
-        {prices.map(price => (
-          <Price key={price} price={price} selected={price === prices[0]} />
-        ))}
+      <div className={styles.block}>
+        <h2>Prix</h2>
+        <div className={styles.buttons}>
+          {prices.map(price => (
+            <Price key={price} price={price} selected={price === prices[0]} />
+          ))}
+        </div>
       </div>
-    </div>
-    <div className={styles.block}>
-      <h2>Contexte</h2>
-      <div className={styles.buttons}>
-        {contexts.map(context => (
-          <Context key={context.name} {...context} selected={context.name === contexts[0].name} />
-        ))}
+      <div className={styles.block}>
+        <h2>Contexte</h2>
+        <div className={styles.buttons}>
+          {contexts.map(context => (
+            <Context key={context.name} {...context} selected={context.name === contexts[0].name} />
+          ))}
+        </div>
       </div>
-    </div>
-    <div className={styles.block}>
-      <h2>TVA</h2>
-      <div className={styles.buttons}>
-        {taxes.map(taxe => (
-          <Taxe key={taxe} taxe={taxe} selected={taxe === taxes[0]} />
-        ))}
+      <div className={styles.block}>
+        <h2>TVA</h2>
+        <div className={styles.buttons}>
+          {taxes.map(taxe => (
+            <Taxe key={taxe} taxe={taxe} selected={taxe === taxes[0]} />
+          ))}
+        </div>
       </div>
-    </div>
-    <div className={styles.block}>
-      <NeedRefund />
-    </div>
-    <div className={styles.block}>
-      <div className={styles.buttons}>
-        <button onClick={add}>ADD</button>
-        <button onClick={cancel}>CANCEL</button>
+      <div className={styles.block}>
+        <NeedRefund />
       </div>
-    </div>
+      <div className={styles.block}>
+        <div className={styles.buttons}>
+          <button onClick={add}>ADD</button>
+          <button onClick={cancel}>CANCEL</button>
+        </div>
+      </div>
+    </div>}
     <div>{response}</div>
   </Fragment>
 )

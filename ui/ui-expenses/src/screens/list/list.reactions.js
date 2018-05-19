@@ -30,7 +30,7 @@ export const setPrices = ({ payload }, store) => {
   store.data.fileId.set(payload.fileId)
 }
 
-export const submit = ({ payload }, store, { window, http }) => {
+export const submit = ({ payload }, store, { window, http, camera }) => {
   // add image to a <img in DOM (the source of the transformation)
   const reader = new window.FileReader()
   reader.onload = (e) => {
@@ -56,6 +56,7 @@ export const submit = ({ payload }, store, { window, http }) => {
           const reader2 = new window.FileReader()
           reader2.onerror = (readerE) => { store.dispatch({ type: '@@file/ON_ERROR', payload: readerE }) }
           reader2.onload = async (readerE) => {
+            store.devices.cameras.capture.set(readerE.target.result)
             http('IMAGES').post('/api/images', {
               image: readerE.target.result.replace(/data:.*;base64,/, ''),
               user: store.data.profile.get().name,

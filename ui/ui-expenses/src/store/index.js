@@ -19,6 +19,7 @@ export default createStore(
       taxe: simpleObject({ defaultData: 0 }),
       response: simpleObject({ defaultData: '' }),
     },
+    devices: {}, // FIXME: bug krml
   },
   {
     listeners,

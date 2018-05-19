@@ -18,6 +18,14 @@ export const add = ((action, store, { http }) => {
     )
 })
 
+export const setPrices = ({ payload }, store) => {
+  store.data.prices.set(payload.prices)
+  store.ui.header.set({ title: 'ajout' })
+  store.data.fileId.set(payload.fileId)
+}
+
+export const resetPrices = ((action, store) => store.data.prices.reset())
+
 export const cancel = ((action, store, { http }) => {
   http('IMAGES')
     .delete(
@@ -36,6 +44,7 @@ export const init = (action, store) => {
 }
 
 export const setPrice = (({ payload }, store) => store.ui.price.set(payload))
+
 
 export const setTaxe = (({ payload }, store) => store.ui.taxe.set(payload))
 
