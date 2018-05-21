@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Form, Text } from 'react-form'
 import { Link } from 'redux-little-router'
+import { component } from 'ui-hocs'
 import Line from './line'
 import Timetable from './timetable'
 import Total from './total'
@@ -126,4 +127,4 @@ Invoice.defaultProps = {
   getPDF: undefined,
 }
 
-export default Invoice
+export default component()(Invoice)

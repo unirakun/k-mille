@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
+import { component } from 'ui-hocs'
 
 const FORMATTER = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' })
 
@@ -34,4 +35,4 @@ Total.defaultProps = {
   total: 0,
 }
 
-export default Total
+export default component()(Total)

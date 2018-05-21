@@ -1,6 +1,8 @@
-import { inject } from '@k-ramel/react'
+import { container } from 'ui-hocs'
 import Component from './total'
 
-export default inject(store => ({
+const mapStore = store => ({
   total: store.ui.total.get(),
-}))(Component)
+})
+
+export default container({ mapStore })(Component)
