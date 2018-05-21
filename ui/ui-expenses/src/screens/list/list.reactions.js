@@ -30,7 +30,7 @@ export const setPrices = ({ payload }, store) => {
   store.data.fileId.set(payload.fileId)
 }
 
-export const submit = ({ payload }, store, { window, http, camera }) => {
+export const submit = ({ payload }, store, { window, http }) => {
   // add image to a <img in DOM (the source of the transformation)
   const reader = new window.FileReader()
   reader.onload = (e) => {
