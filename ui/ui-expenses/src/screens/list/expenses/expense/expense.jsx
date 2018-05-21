@@ -7,6 +7,7 @@ const FORMATTER_EUR = new Intl.NumberFormat('fr-FR', { style: 'currency', curren
 const FORMATTER_DATE = new Intl.DateTimeFormat('fr-FR', { month: 'short', day: 'numeric' })
 
 const Expense = ({
+  classes,
   date,
   context,
   price,
@@ -17,15 +18,16 @@ const Expense = ({
   <tr>
     <td>{date && FORMATTER_DATE.format(date)}</td>
     <td>{context}</td>
-    <td className={styles.price}>{FORMATTER_EUR.format(price)}</td>
+    <td className={classes.price}>{FORMATTER_EUR.format(price)}</td>
     <td>{needRefund && user}</td>
-    <td className={styles.file}>
+    <td className={classes.file}>
       <a href={`https://drive.google.com/file/d/${fileId}/view`}>file</a>
     </td>
   </tr>
 )
 
 Expense.propTypes = {
+  classes: PropTypes.object,
   date: PropTypes.number,
   context: PropTypes.string,
   price: PropTypes.number,
@@ -35,6 +37,7 @@ Expense.propTypes = {
 }
 
 Expense.defaultProps = {
+  classes: {},
   date: undefined,
   context: undefined,
   price: undefined,
@@ -43,4 +46,4 @@ Expense.defaultProps = {
   fileId: undefined,
 }
 
-export default component()(Expense)
+export default component({ styles })(Expense)

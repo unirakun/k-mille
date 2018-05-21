@@ -1,6 +1,4 @@
-import css from 'css'
-
-export default css({
+export default {
   block: {
     margin: '1em 1.5em',
     '> h2': {
@@ -15,4 +13,4 @@ export default css({
     justifyContent: 'space-between',
     flexWrap: 'wrap',
   },
-})
+}

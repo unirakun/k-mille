@@ -1,8 +1,6 @@
-import { merge, select } from 'glamor'
-import css from 'css'
 import { colors } from 'app.styles'
 
-export default css({
+export default {
   main: {
     display: 'inline-block',
   },
@@ -13,14 +11,13 @@ export default css({
     padding: '.3em',
     margin: '1em',
   },
-  input: merge(
-    {
-      position: 'absolute',
-      opacity: 0,
-    },
-    select(':checked + img', {
+  input: {
+    position: 'absolute',
+    opacity: 0,
+
+    '&:checked + img': {
       filter: 'brightness(75%)',
       border: `solid 1px ${colors.blue}`,
-    }),
-  ),
-})
+    },
+  },
+}

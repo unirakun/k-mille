@@ -1,7 +1,5 @@
-import css from 'css'
-
-export default css({
+export default {
   price: {
     textAlign: 'right',
   },
-})
+}

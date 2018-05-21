@@ -1,4 +1,5 @@
 import { compose, onlyUpdateForPropTypes, withContext } from 'recompose';
+import jss from 'react-jss';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { inject, listen } from '@k-ramel/react';
@@ -7,10 +8,13 @@ import loaderHoc from 'hoc-react-loader/build/core';
 
 function component (ref) {
     if ( ref === void 0 ) ref = {};
+    var styles = ref.styles;
     var optimize = ref.optimize; if ( optimize === void 0 ) optimize = true;
 
     return function (Component) {
     var hocs = [];
+    if (styles) 
+        { hocs.push(jss(styles)); }
     if (optimize && Component.propTypes) 
         { hocs.push(onlyUpdateForPropTypes); }
     return compose.apply(void 0, hocs)(Component);
