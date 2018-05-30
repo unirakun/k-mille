@@ -4,10 +4,15 @@ import { component } from 'ui-hocs'
 import Send from './sendButton'
 import styles from './header.styles'
 
-const Header = ({ name, avatar, title }) => (
-  <div className={styles.header}>
-    <img src={avatar} alt={name} className={styles.avatar} />
-    <h1 className={styles.title}>{title}</h1>
+const Header = ({
+  classes,
+  name,
+  avatar,
+  title,
+}) => (
+  <div className={classes.header}>
+    <img src={avatar} alt={name} className={classes.avatar} />
+    <h1 className={classes.title}>{title}</h1>
     {
       title === 'envoi' && <Send />
     }
@@ -15,14 +20,16 @@ const Header = ({ name, avatar, title }) => (
 )
 
 Header.propTypes = {
+  classes: PropTypes.object,
   name: PropTypes.string,
   avatar: PropTypes.string,
   title: PropTypes.string.isRequired,
 }
 
 Header.defaultProps = {
+  classes: undefined,
   name: undefined,
   avatar: undefined,
 }
 
-export default component()(Header)
+export default component({ styles })(Header)

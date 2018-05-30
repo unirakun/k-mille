@@ -1,5 +1,3 @@
-import css from 'css'
-
 export const colors = {
   mainColor: '#7901c3',
   background: '#fafafa',
@@ -9,10 +7,10 @@ export const colors = {
   green: '#8BC34A',
 }
 
-export default css({
+export default {
   container: {
     color: colors.black,
     backgroundColor: colors.background,
     height: '100vh',
   },
-})
+}

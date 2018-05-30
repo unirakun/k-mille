@@ -1,8 +1,6 @@
-import css from 'css'
-
-export default css({
+export default {
   price: {
     display: 'inline-block',
     margin: '.2em 0',
   },
-})
+}

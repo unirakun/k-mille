@@ -1,18 +1,15 @@
-import { merge, select } from 'glamor'
-import css from 'css'
 import { colors } from 'app.styles'
 
-export default css({
+export default {
   price: {
     display: 'inline-block',
     margin: '.2em 0',
   },
-  input: merge(
-    {
-      position: 'absolute',
-      opacity: 0,
-    },
-    select('& + div', {
+  input: {
+    position: 'absolute',
+    opacity: 0,
+
+    '& + div': {
       padding: '.7em',
       minWidth: '4em',
       backgroundColor: colors.blue,
@@ -20,9 +17,9 @@ export default css({
       fontSize: '14px',
       color: 'white',
       textAlign: 'center',
-    }),
-    select(':checked + div', {
+    },
+    '&:checked + div': {
       filter: 'brightness(75%)',
-    }),
-  ),
-})
+    },
+  },
+}

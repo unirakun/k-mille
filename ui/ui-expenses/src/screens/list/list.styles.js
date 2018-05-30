@@ -1,9 +1,7 @@
-import css from 'css'
-
-export default css({
+export default {
   image: {
     visibility: 'hidden',
     position: 'absolute',
     left: '-9999px',
   },
-})
+}

@@ -1,9 +1,8 @@
-import css from 'css'
 import { colors } from 'app.styles'
 
 const buttonSize = '56px'
 
-export default css({
+export default {
   container: {
     position: 'absolute',
     bottom: '24px',
@@ -31,4 +30,4 @@ export default css({
     lineHeight: buttonSize,
     textAlign: 'center',
   },
-})
+}

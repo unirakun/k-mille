@@ -1,12 +1,15 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { component } from 'ui-hocs'
 import Header from './components/header'
 import List from './screens/list'
 import Prices from './screens/prices'
 import styles from './app.styles'
 
-const App = () => (
-  <div className={styles.container}>
+const App = ({
+  classes,
+}) => (
+  <div className={classes.container}>
     <Header />
 
     {/* screens */}
@@ -15,4 +18,12 @@ const App = () => (
   </div>
 )
 
-export default component()(App)
+App.propTypes = {
+  classes: PropTypes.object,
+}
+
+App.defaultProps = {
+  classes: {},
+}
+
+export default component({ styles })(App)

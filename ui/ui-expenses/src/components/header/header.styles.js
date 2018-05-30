@@ -1,7 +1,6 @@
-import css from 'css'
 import { colors } from 'app.styles'
 
-export default css({
+export default {
   header: {
     backgroundColor: colors.mainColor,
     boxShadow: `
@@ -29,4 +28,4 @@ export default css({
     flexGrow: 2,
     marginLeft: '16px',
   },
-})
+}
