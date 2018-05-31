@@ -13,6 +13,7 @@
     "lodash": "^4.17.5",
     "node-fetch": "^2.1.2",
     "server": "1.0.0",
-    "streamifier": "^0.1.1"
+    "streamifier": "^0.1.1",
+    "utils-email": "^1.0.0"
   }
 }

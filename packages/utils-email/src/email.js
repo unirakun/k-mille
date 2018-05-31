@@ -24,7 +24,7 @@ module.exports = {
             Email: email,
             Name: name,
           })),
-          Cc: cc.map(({ email, name }) => ({
+          Cc: (cc || []).map(({ email, name }) => ({
             Email: email,
             Name: name,
           })),

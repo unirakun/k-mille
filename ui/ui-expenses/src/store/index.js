@@ -9,6 +9,7 @@ export default createStore(
       fileId: simpleObject({ defaultData: '' }),
       prices: simpleObject({ defaultData: [] }),
       expenses: keyValue({ key: 'id' }),
+      emails: simpleObject(),
     },
     ui: {
       header: simpleObject({ defaultData: { title: 'envoi' } }),
