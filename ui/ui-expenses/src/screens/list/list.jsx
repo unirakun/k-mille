@@ -1,18 +1,29 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { component } from 'ui-hocs'
 import Add from '../../components/addButton'
 import Expenses from './expenses'
 import styles from './list.styles'
 
-const List = () => (
+const List = ({
+  classes,
+}) => (
   <div>
     <Expenses />
     <Add />
-    <div className={styles.image}>
+    <div className={classes.image}>
       <canvas id="resize" height="200" width="200" />
       <img id="source" alt="hidden" />
     </div>
   </div>
 )
 
-export default component()(List)
+List.propTypes = {
+  classes: PropTypes.object,
+}
+
+List.defaultProps = {
+  classes: {},
+}
+
+export default component({ styles })(List)

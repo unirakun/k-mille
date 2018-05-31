@@ -2,6 +2,8 @@ import PropTypes from 'prop-types'
 import { compose, withContext } from 'recompose'
 import { inject, listen } from '@k-ramel/react'
 import router from 'hoc-little-router'
+import loaderHoc from 'hoc-react-loader/build/core'
+import LoadingIndicator from './loadingIndicator'
 
 export default ({
   screenName,
@@ -9,6 +11,7 @@ export default ({
   listeners,
   form,
   mapStore,
+  loader,
 } = {}) => {
   const hocs = []
   // route (hide or not the component)
@@ -27,6 +30,17 @@ export default ({
 
   // map store to props
   if (mapStore) hocs.push(inject(mapStore))
+
+  // loader (hide/show elements)
+  if (loader) {
+    const options = { LoadingIndicator }
+
+    if (typeof loader === 'string') {
+      options.print = [loader]
+    }
+
+    hocs.push(loaderHoc(options))
+  }
 
   return compose(...hocs)
 }

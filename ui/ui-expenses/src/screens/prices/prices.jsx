@@ -30,6 +30,7 @@ const contexts = [
 
 
 const Prices = ({
+  classes,
   prices,
   response,
   add,
@@ -39,31 +40,37 @@ const Prices = ({
     <div className={styles.block}>
       <Capture />
     </div>
-    {prices.length > 0 &&
-    <div className={styles.block}>
-      <div className={styles.block}>
-        <h2>Prix</h2>
-        <div className={styles.buttons}>
-          {prices.map(price => (
-            <Price key={price} price={price} selected={price === prices[0]} />
-          ))}
-        </div>
+    <div className={classes.block}>
+      <h2>Prix</h2>
+      <div className={classes.buttons}>
+        {prices.map(price => (
+          <Price key={price} price={price} selected={price === prices[0]} />
+        ))}
       </div>
-      <div className={styles.block}>
-        <h2>Contexte</h2>
-        <div className={styles.buttons}>
-          {contexts.map(context => (
-            <Context key={context.name} {...context} selected={context.name === contexts[0].name} />
-          ))}
-        </div>
+    </div>
+    <div className={classes.block}>
+      <h2>Contexte</h2>
+      <div className={classes.buttons}>
+        {contexts.map(context => (
+          <Context key={context.name} {...context} selected={context.name === contexts[0].name} />
+        ))}
       </div>
-      <div className={styles.block}>
-        <h2>TVA</h2>
-        <div className={styles.buttons}>
-          {taxes.map(taxe => (
-            <Taxe key={taxe} taxe={taxe} selected={taxe === taxes[0]} />
-          ))}
-        </div>
+    </div>
+    <div className={classes.block}>
+      <h2>TVA</h2>
+      <div className={classes.buttons}>
+        {taxes.map(taxe => (
+          <Taxe key={taxe} taxe={taxe} selected={taxe === taxes[0]} />
+        ))}
+      </div>
+    </div>
+    <div className={classes.block}>
+      <NeedRefund />
+    </div>
+    <div className={classes.block}>
+      <div className={classes.buttons}>
+        <button onClick={add}>ADD</button>
+        <button onClick={cancel}>CANCEL</button>
       </div>
       <div className={styles.block}>
         <NeedRefund />
@@ -80,6 +87,7 @@ const Prices = ({
 )
 
 Prices.propTypes = {
+  classes: PropTypes.object,
   prices: PropTypes.array,
   response: PropTypes.string,
   add: PropTypes.func,
@@ -87,10 +95,11 @@ Prices.propTypes = {
 }
 
 Prices.defaultProps = {
+  classes: {},
   prices: [],
   response: '',
   add: undefined,
   cancel: undefined,
 }
 
-export default component()(Prices)
+export default component({ styles })(Prices)

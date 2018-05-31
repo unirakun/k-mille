@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { component } from 'ui-hocs'
 
 const FORMATTER = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' })
 
@@ -24,4 +25,4 @@ Line.defaultProps = {
   pricePerUnit: undefined,
 }
 
-export default Line
+export default component()(Line)

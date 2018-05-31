@@ -4,6 +4,7 @@ import { component } from 'ui-hocs'
 import styles from './context.styles'
 
 const Context = ({
+  classes,
   name,
   src,
   selected,
@@ -21,14 +22,15 @@ const Context = ({
   }
 
   return (
-    <label htmlFor={name} className={styles.main}>
-      <input type="radio" id={name} name="context" className={styles.input} defaultChecked={selected} onChange={onChange} />
-      <img src={src} alt={name} className={styles.avatar} />
+    <label htmlFor={name} className={classes.main}>
+      <input type="radio" id={name} name="context" className={classes.input} defaultChecked={selected} onChange={onChange} />
+      <img src={src} alt={name} className={classes.avatar} />
     </label>
   )
 }
 
 Context.propTypes = {
+  classes: PropTypes.object,
   name: PropTypes.string.isRequired,
   src: PropTypes.string,
   selected: PropTypes.bool,
@@ -36,9 +38,10 @@ Context.propTypes = {
 }
 
 Context.defaultProps = {
+  classes: {},
   src: undefined,
   selected: false,
   onChange: undefined,
 }
 
-export default component()(Context)
+export default component({ styles })(Context)
