@@ -12,23 +12,6 @@ const takeCapture = (store) => {
   store.devices.cameras.capture.set(camera.getScreenshot())
 }
 
-export const sendOnDrive = ((action, store, { http, camera }) => {
-  http('IMAGES').post('/api/images', {
-    image: camera.getCapture().replace(/data:.*;base64,/, ''),
-    user: store.data.profile.get().name,
-  })
-})
-
-const setGoogleId = (({ payload }, store) => store.devices.cameras.googleId.set(payload.fileId))
-
-const removeGoogleId = ((action, store, { http }) =>
-  http('IMAGES').delete(`/api/images/${store.devices.cameras.googleId.get()}`))
-
-const resetCapture = ((action, store) => {
-  store.devices.cameras.googleId.reset()
-  store.devices.cameras.capture.reset()
-})
-
 export default {
   getReducer: () => ({
     path: 'devices.cameras',
@@ -36,17 +19,11 @@ export default {
       used: simpleObject(),
       list: simpleObject({ defaultData: [] }),
       capture: simpleObject({ defaultData: '' }),
-      googleId: simpleObject({ defaultData: '' }),
     },
   }),
   getDriver: (store) => {
     store.listeners.add([
       when('@@krml/INIT')(setDevices),
-      when('@@krf/SET>DEVICES_CAMERAS>CAPTURE')(sendOnDrive),
-      when('@@http/IMAGES>POST>ENDED')(setGoogleId),
-      when('@@http/IMAGES>POST>FAILED')(resetCapture),
-      when('@@http/IMAGES>DELETE>ENDED')(resetCapture),
-      when('@@camera/REMOVE_CAPTURE')(removeGoogleId),
     ])
 
     return ({

@@ -1,4 +1,5 @@
 import { container } from 'ui-hocs'
+import listeners from './capture.listeners'
 import Component from './capture'
 
 
@@ -12,4 +13,4 @@ const mapStore = (store, ownProps, { camera, window }) => ({
   width: window.innerWidth / 1.1,
 })
 
-export default container({ mapStore })(Component)
+export default container({ mapStore, listeners })(Component)
