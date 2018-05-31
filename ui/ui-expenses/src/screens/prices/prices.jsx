@@ -72,16 +72,7 @@ const Prices = ({
         <button onClick={add}>ADD</button>
         <button onClick={cancel}>CANCEL</button>
       </div>
-      <div className={styles.block}>
-        <NeedRefund />
-      </div>
-      <div className={styles.block}>
-        <div className={styles.buttons}>
-          <button onClick={add}>ADD</button>
-          <button onClick={cancel}>CANCEL</button>
-        </div>
-      </div>
-    </div>}
+    </div>
     <div>{response}</div>
   </Fragment>
 )

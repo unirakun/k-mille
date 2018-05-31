@@ -2,8 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Webcam from 'react-webcam'
 import { component } from 'ui-hocs'
+import styles from './capture.styles'
 
 const Capture = ({
+  classes,
   device,
   height,
   width,
@@ -15,7 +17,7 @@ const Capture = ({
   if (capture) {
     return (
       <div>
-        <img width={50} height={50} src={capture} />
+        <img className={classes.image} src={capture} />
         <button onClick={cancel}>Cancel</button>
       </div>
     )
@@ -27,7 +29,7 @@ const Capture = ({
         height={height}
         width={width}
         ref={useCamera}
-        screenshotFormat="image/webp"
+        screenshotFormat="image/jpeg"
         videoSource={device}
       />
       <button onClick={takeCapture}>take photo</button>
@@ -36,6 +38,7 @@ const Capture = ({
 }
 
 Capture.propTypes = {
+  classes: PropTypes.object,
   device: PropTypes.string.isRequired,
   height: PropTypes.number.isRequired,
   width: PropTypes.number.isRequired,
@@ -46,10 +49,11 @@ Capture.propTypes = {
 }
 
 Capture.defaultProps = {
+  classes: {},
   capture: undefined,
   useCamera: undefined,
   takeCapture: undefined,
   cancel: undefined,
 }
 
-export default component()(Capture)
+export default component({ styles })(Capture)
