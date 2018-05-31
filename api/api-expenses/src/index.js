@@ -9,5 +9,5 @@ server({
     'https://www.googleapis.com/auth/drive.metadata',
     'https://www.googleapis.com/auth/spreadsheets',
   ],
-  resources: [require('./images'), require('./expenses')],
+  resources: [require('./images'), require('./expenses'), require('./emails')],
 })

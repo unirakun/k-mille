@@ -1,5 +1,13 @@
 import { when } from 'k-ramel'
-import { load, setExpenses, goToCreate, setPrices, submit } from './list.reactions'
+import {
+  load,
+  setExpenses,
+  goToCreate,
+  setPrices,
+  submit,
+  sendEmails,
+  setEmails,
+} from './list.reactions'
 
 export default [
   when('@@krml/LISTENERS>ADDED>list')(load),
@@ -9,7 +17,9 @@ export default [
   when('@@http/IMAGES>POST>ENDED')(goToCreate),
   when('@@http/IMAGES>POST>ENDED')(setPrices),
   when('@@ui/ON_SUBMIT')(submit),
-  when('@@ui/ON_SEND')(() => {
-    console.log('send files')
-  }),
+
+  // emails
+  when('@@ui/ON_SEND')(sendEmails),
+  when('@@http/EMAILS>POST>ENDED')(setEmails),
+  when('@@http/EMAILS>POST>ENDED')(load),
 ]

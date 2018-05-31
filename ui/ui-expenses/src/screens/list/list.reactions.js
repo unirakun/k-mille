@@ -67,3 +67,11 @@ export const submit = ({ payload }, store, { window, http }) => {
   }
   reader.readAsDataURL(payload)
 }
+
+export const sendEmails = (action, store, { http }) => {
+  http('EMAILS').post('/api/emails')
+}
+
+export const setEmails = ({ payload }, store) => {
+  store.data.emails.set(payload)
+}
