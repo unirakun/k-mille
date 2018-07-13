@@ -9,6 +9,7 @@ const Invoice = ({
   priceTTC,
   fileId,
   onRemove,
+  onPaid,
 }) => (
   <div>
     <div>Invoice: {id}</div>
@@ -19,7 +20,8 @@ const Invoice = ({
       <a href={`https://drive.google.com/uc?export=view&id=${fileId}`}>
         PDF
       </a>)}
-    {id.includes('draft') && <button onClick={() => onRemove()}>remove</button>}
+    {id.includes('draft') && <button onClick={onRemove}>remove</button>}
+    {id.includes('draft') || <button onClick={onPaid}>paid</button>}
     <hr />
   </div>
 )
@@ -31,6 +33,7 @@ Invoice.propTypes = {
   priceTTC: PropTypes.string,
   fileId: PropTypes.string,
   onRemove: PropTypes.func,
+  onPaid: PropTypes.func,
 }
 
 Invoice.defaultProps = {
@@ -39,6 +42,7 @@ Invoice.defaultProps = {
   priceTTC: undefined,
   fileId: undefined,
   onRemove: undefined,
+  onPaid: undefined,
 }
 
 export default component()(Invoice)
