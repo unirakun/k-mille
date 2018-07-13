@@ -13,12 +13,8 @@ module.exports = attachments => (ctx) => {
 
   const cc = [
     {
-      email: 'fabien.juif@alakarte.io',
-      name: 'Fabien JUIF',
-    },
-    {
-      email: 'guillaume.crespel@alakarte.io',
-      name: 'Guillaume CRESPEL',
+      email: 'facturation@alakarte.io',
+      name: 'alakarte - facturation',
     },
   ]
 
