@@ -1,5 +1,6 @@
 const { google } = require('googleapis')
 
+// TODO: factorize with invoices
 module.exports = fileId => ctx => new Promise((resolve, reject) => {
   const { auth } = ctx.state
 
