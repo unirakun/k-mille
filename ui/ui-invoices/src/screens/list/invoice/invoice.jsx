@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { component } from 'ui-hocs'
+import DueDate from './dueDate'
 
 const Invoice = ({
   id,
@@ -8,6 +9,7 @@ const Invoice = ({
   since,
   priceTTC,
   fileId,
+  timetable,
   onRemove,
   onPaid,
 }) => (
@@ -22,6 +24,9 @@ const Invoice = ({
       </a>)}
     {id.includes('draft') && <button onClick={onRemove}>remove</button>}
     {id.includes('draft') || <button onClick={onPaid}>paid</button>}
+    {timetable.map(dueDate => (
+      <DueDate key={dueDate} invoiceId={id} id={dueDate} />
+    ))}
     <hr />
   </div>
 )
@@ -32,6 +37,7 @@ Invoice.propTypes = {
   since: PropTypes.string,
   priceTTC: PropTypes.string,
   fileId: PropTypes.string,
+  timetable: PropTypes.array,
   onRemove: PropTypes.func,
   onPaid: PropTypes.func,
 }
@@ -41,6 +47,7 @@ Invoice.defaultProps = {
   since: undefined,
   priceTTC: undefined,
   fileId: undefined,
+  timetable: [],
   onRemove: undefined,
   onPaid: undefined,
 }

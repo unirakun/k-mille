@@ -11,6 +11,7 @@ export default createStore(
     ui: {
       list: {
         invoices: keyValue({ key: 'id' }),
+        timetables: keyValue({ key: 'id' }),
       },
       ok: simpleObject({ defaultData: false }),
       id: simpleObject({ defaultData: '' }),

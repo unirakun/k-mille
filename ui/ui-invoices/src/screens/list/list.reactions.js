@@ -12,17 +12,21 @@ export const map = (action, store) => {
   // utils
   const formatCurrency = price => new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(price)
   const getTotalPriceTTC = pricesHT => formatCurrency(pricesHT.reduce((acc, price) => acc + (price.nb * price.pricePerUnit * 1.2), 0))
+
   const makeInvoice = invoice => ({
     id: invoice.id,
     fileId: invoice.fileId,
     clientName: invoice.client.name,
     since: distanceInWordsToNow(invoice.dates.print),
     priceTTC: getTotalPriceTTC(invoice.lines),
-    timetable: invoice.timetable.map((line, i) => ({
-      id: invoice.ranges[i],
-      priceTTC: formatCurrency(line.price * 1.2),
-      since: distanceInWordsToNow(line.date),
-    })),
+    timetable: invoice.timetable.map(({ price, date }, i) => {
+      store.ui.list.timetables.add({
+        id: invoice.ranges[i],
+        priceTTC: formatCurrency(price * 1.2),
+        since: distanceInWordsToNow(date),
+      })
+      return invoice.ranges[i]
+    }),
   })
 
   const invoices = store.data.invoices.getAsArray()
@@ -38,9 +42,15 @@ export const remove = async ({ payload }, store, { http }) => {
 }
 
 export const setPaid = async ({ payload }, store, { http }) => {
-  const invoice = store.data.invoices.get(payload)
+  const { invoiceId, dueDateId } = payload
+  let invoice = { ...store.data.invoices.get(invoiceId) }
+  if (dueDateId) {
+    const timetableId = invoice.ranges.indexOf(dueDateId)
+    invoice.timetable[timetableId] = { ...invoice.timetable[timetableId], paid: true }
+  } else {
+    invoice = { ...invoice, paid: true }
+  }
 
   await http('INVOICES').put('/api/invoices', { ...invoice, paid: true })
-
   store.data.invoices.remove(invoice.id)
 }
