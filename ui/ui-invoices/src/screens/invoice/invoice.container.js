@@ -13,7 +13,7 @@ const mapStore = store => ({
   lines: store.ui.lines.getKeys(),
   timetable: store.ui.timetable.getKeys(),
   addLine: (values) => { store.ui.lines.add(values) },
-  addTimetableLine: (values) => { store.ui.timetable.add(values) },
+  addTimetableLine: ({ date, price }) => { store.ui.timetable.add({ price, date: parse(date).getTime() }) },
   setClient: (values) => { store.ui.client.set(values) },
   setDates: (values) => { store.ui.dates.set({ end: parse(values.end).getTime(), print: Date.now() }) },
   setId: (values) => { store.ui.id.set(values.id) },
