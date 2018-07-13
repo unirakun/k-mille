@@ -9,6 +9,9 @@ export default createStore(
       profile: simpleObject(),
     },
     ui: {
+      list: {
+        invoices: keyValue({ key: 'id' }),
+      },
       ok: simpleObject({ defaultData: false }),
       id: simpleObject({ defaultData: '' }),
       lines: keyValue({ key: 'title' }),

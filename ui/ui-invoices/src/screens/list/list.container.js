@@ -5,8 +5,7 @@ import Component from './list'
 const screenName = 'list'
 
 const mapStore = store => ({
-  invoices: store.data.invoices.getAsArray(),
-  onRemove: id => store.dispatch({ type: '@@ui/ON_REMOVE', payload: id }),
+  invoices: store.ui.list.invoices.getKeys(),
 })
 
 export default container({ screenName, mapStore, listeners })(Component)
