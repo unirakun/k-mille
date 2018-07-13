@@ -2,29 +2,21 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { component } from 'ui-hocs'
 import { Link } from 'redux-little-router'
+import Invoice from './invoice'
 
-const List = ({ invoices, onRemove }) => (
+const List = ({ invoices }) => (
   <div>
     <Link href="/invoice">create</Link>
-
-    {invoices.map(invoice => (
-      <div>
-        <div>Invoice: {invoice.id}</div>
-        <button onClick={() => onRemove(invoice.id)}>remove</button>
-        <pre>{JSON.stringify(invoice, null, 2)}</pre>
-      </div>
-    ))}
+    {invoices.map(id => (<Invoice key={id} id={id} />))}
   </div>
 )
 
 List.propTypes = {
-  invoices: PropTypes.object,
-  onRemove: PropTypes.func,
+  invoices: PropTypes.array,
 }
 
 List.defaultProps = {
-  invoices: {},
-  onRemove: undefined,
+  invoices: [],
 }
 
 export default component()(List)
