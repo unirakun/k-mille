@@ -9,7 +9,12 @@ const update = util.promisify(google.sheets('v4').spreadsheets.values.update)
 module.exports = async (ctx) => {
   const { auth } = ctx.state
   const invoice = ctx.request.body
-  const { ranges, timetable, paid, id } = invoice
+  const {
+    ranges,
+    timetable,
+    paid,
+    id,
+  } = invoice
 
   // save data to sheet
   const lines = toSheetLine(invoice)
