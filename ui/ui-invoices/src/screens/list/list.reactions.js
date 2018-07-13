@@ -45,8 +45,8 @@ export const setPaid = async ({ payload }, store, { http }) => {
   const { invoiceId, dueDateId } = payload
   let invoice = { ...store.data.invoices.get(invoiceId) }
   if (dueDateId) {
-    const timetableId = invoice.ranges.indexOf(dueDateId)
-    invoice.timetable[timetableId] = { ...invoice.timetable[timetableId], paid: true }
+    const index = invoice.ranges.indexOf(dueDateId)
+    invoice.timetable[index] = { ...invoice.timetable[index], paid: true }
   } else {
     invoice = { ...invoice, paid: true }
   }
