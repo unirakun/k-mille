@@ -10,13 +10,13 @@
   version "0.13.2"
   resolved "https://registry.yarnpkg.com/@k-ramel/react/-/react-0.13.2.tgz#0126a00bd5808e2fc78268b4d9c37f30f47fe75d"
 
-"@k-redux-router/core@^0.4.0":
+"@k-redux-router/core@^0.4.1":
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/@k-redux-router/core/-/core-0.4.1.tgz#d2c711d8abcb6b2d636690868524b57f5db0694e"
 
-"@k-redux-router/react-k-ramel@^0.4.0":
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/@k-redux-router/react-k-ramel/-/react-k-ramel-0.4.0.tgz#ad0c44d287cd97068851ec2fb6a72d6fa665f177"
+"@k-redux-router/react-k-ramel@^0.4.2":
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/@k-redux-router/react-k-ramel/-/react-k-ramel-0.4.2.tgz#c9c7db47e5e242b92449dfd04dba933f85ff96e1"
 
 "@vue/component-compiler-utils@^1.0.0":
   version "1.2.1"
