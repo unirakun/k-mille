@@ -9,7 +9,7 @@ module.exports = async (ctx) => {
 
   const response = await get({
     spreadsheetId: process.env.GOOGLE_SHEETS_ID,
-    range: 'Factures!A7:A1000', // before line 7 we don't store JSON (first version)
+    range: 'Factures!A2:A1000',
     valueRenderOption: 'UNFORMATTED_VALUE',
     auth,
   })
@@ -17,7 +17,7 @@ module.exports = async (ctx) => {
   const values = (response.data.values || [])
     // json can be undefined when the line is cleared (with DELETE /api/invoices)
     // we don't use filter before map because index let us now the sheet line used by DELETE
-    .map(([json], index) => (json ? { ...JSON.parse(json), ranges: [7 + index] } : undefined))
+    .map(([json], index) => (json ? { ...JSON.parse(json), ranges: [2 + index] } : undefined))
     // undefined lines (cleared invoices) are not returned
     .filter(Boolean)
 
