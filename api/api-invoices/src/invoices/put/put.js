@@ -9,7 +9,7 @@ const update = util.promisify(google.sheets('v4').spreadsheets.values.update)
 module.exports = async (ctx) => {
   const { auth } = ctx.state
   const invoice = ctx.request.body
-  const { ranges, timetable, paid } = invoice
+  const { ranges, timetable, paid, id } = invoice
 
   // save data to sheet
   const lines = toSheetLine(invoice)
@@ -26,11 +26,14 @@ module.exports = async (ctx) => {
   )))
 
   // send email if
+  // - the invoice is not a draft
   // - the invoice is not a timetable and is paid
   // - or this is the first timetable to be paid
   if (
-    ((!timetable || timetable.length <= 0) && paid)
-    || (timetable.filter(t => t.paid).length === 1)
+    !id.includes('draft') && (
+      ((!timetable || timetable.length <= 0) && paid)
+      || (timetable.filter(t => t.paid).length === 1)
+    )
   ) await email(ctx)
 
   ctx.response.status = 200
