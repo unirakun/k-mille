@@ -11,13 +11,13 @@ const toSheet = ({ body, fileId }) => ({
   date,
   price,
 }) => [
+  JSON.stringify({ ...body, fileId }),
   name,
   id.includes('draft-') ? id : Number.parseInt(id, 10),
   format(date, 'YYYY/MM/DD'),
   Number.parseFloat(price, 10),
   'non',
   `https://drive.google.com/file/d/${fileId}/view`,
-  JSON.stringify({ ...body, fileId }),
 ]
 
 module.exports = fileId => async (ctx) => {
