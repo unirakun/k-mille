@@ -36,7 +36,7 @@ module.exports = fileId => async (ctx) => {
   let sheetLines = timetable.map(line => toSheetImpl({ ...line, name: client.name, id }))
   if (!timetable || timetable.length === 0) {
     const total = lines.reduce(
-      (acc, { nb, pricePerUnit }) => acc + (nb * pricePerUnit * 1.2),
+      (acc, { nb, pricePerUnit }) => acc + (nb * pricePerUnit),
       0,
     )
 
