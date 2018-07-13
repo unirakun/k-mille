@@ -36,3 +36,12 @@ export const remove = async ({ payload }, store, { http }) => {
 
   store.data.invoices.remove(id)
 }
+
+export const setPaid = async ({ payload }, store, { http }) => {
+  const invoice = store.data.invoices.get(payload)
+  const newInvoice = { ...invoice, paid: true }
+
+  await http('INVOICES').put('/api/invoices', newInvoice)
+
+  store.data.invoices.add(newInvoice)
+}

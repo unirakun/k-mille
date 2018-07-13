@@ -73,7 +73,7 @@ module.exports = ({
     })
   }
 
-  ['SIGUSR1', 'SIGINT', 'SIGTERM', 'SIGPIPE', 'SIGHUP', 'SIGBREAK', 'SIGWINCH'].forEach((sigName) => {
+  ['SIGUSR1', 'SIGINT', 'SIGTERM', 'SIGPIPE', 'SIGHUP', 'SIGBREAK'].forEach((sigName) => {
     process.on(sigName, interrupt(sigName))
   })
 }
