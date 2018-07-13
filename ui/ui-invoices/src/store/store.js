@@ -11,6 +11,7 @@ export default createStore(
     ui: {
       list: {
         invoices: types.keyValue(),
+        timetables: types.keyValue(),
       },
       ok: types.object({ defaultData: false }),
       id: types.string(),
