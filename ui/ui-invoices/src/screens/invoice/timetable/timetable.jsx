@@ -2,17 +2,18 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { component } from 'ui-hocs'
 
-const FORMATTER = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' })
+const CURRENCY_FORMATTER = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' })
+const DATE_FORMATTER = new Intl.DateTimeFormat('fr-FR')
 
 const Timetable = ({ date, price }) => (
   <tr>
-    <td>{date}</td>
-    <td>{FORMATTER.format(price)}</td>
+    <td>{DATE_FORMATTER.format(date)}</td>
+    <td>{CURRENCY_FORMATTER.format(price)}</td>
   </tr>
 )
 
 Timetable.propTypes = {
-  date: PropTypes.instanceOf(Date),
+  date: PropTypes.number,
   price: PropTypes.number,
 }
 
