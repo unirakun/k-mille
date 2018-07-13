@@ -11,8 +11,10 @@
   },
   "dependencies": {
     "@k-ramel/react": "^0.13.2",
-    "hoc-little-router": "^1.2.0",
+    "@k-redux-router/core": "^0.4.0",
+    "@k-redux-router/react-k-ramel": "^0.4.0",
     "hoc-react-loader": "^6.3.0",
+    "path-to-regexp": "^2.2.1",
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
     "react-jss": "^8.4.0",
