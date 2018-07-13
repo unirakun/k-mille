@@ -213,7 +213,7 @@ module.exports = (ctx) => {
         x += width
         width = 90
         doc.rect(x, y, width, height).stroke()
-        doc.text(FORMATTER.format(time.price), x, y + 4, { width: width - 15, align: 'right' })
+        doc.text(FORMATTER.format(time.price * 1.2), x, y + 4, { width: width - 15, align: 'right' })
       })
 
       doc.fill('black')
