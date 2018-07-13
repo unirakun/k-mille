@@ -39,7 +39,10 @@ module.exports = async (ctx) => {
       ((!timetable || timetable.length <= 0) && paid)
       || (timetable.filter(t => t.paid).length === 1)
     )
-  ) await email(ctx)
+  ) {
+    console.log('[put-invoices] sending an email')
+    await email(ctx)
+  }
 
   ctx.response.status = 200
 }

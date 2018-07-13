@@ -1,9 +1,9 @@
 const store = require('./store')
-const email = require('./email')
+const send = require('./send')
 
 module.exports = async (ctx) => {
   const { invoice, iban } = await store(ctx)
-  await email([invoice, iban])(ctx)
+  await send([invoice, iban])(ctx)
 
   ctx.response.status = 200
 }
