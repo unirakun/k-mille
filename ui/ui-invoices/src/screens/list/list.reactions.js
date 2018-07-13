@@ -19,11 +19,12 @@ export const map = (action, store) => {
     clientName: invoice.client.name,
     since: distanceInWordsToNow(invoice.dates.print),
     priceTTC: getTotalPriceTTC(invoice.lines),
-    timetable: invoice.timetable.map(({ price, date }, i) => {
+    timetable: invoice.timetable.map(({ price, date, paid }, i) => {
       store.ui.list.timetables.add({
         id: invoice.ranges[i],
         priceTTC: formatCurrency(price * 1.2),
         since: distanceInWordsToNow(date),
+        paid,
       })
       return invoice.ranges[i]
     }),
@@ -49,8 +50,8 @@ export const setPaid = async ({ payload }, store, { http }) => {
     invoice.timetable[index] = { ...invoice.timetable[index], paid: true }
   } else {
     invoice = { ...invoice, paid: true }
+    store.data.invoices.remove(invoice.id)
   }
 
-  await http('INVOICES').put('/api/invoices', { ...invoice, paid: true })
-  store.data.invoices.remove(invoice.id)
+  await http('INVOICES').put('/api/invoices', invoice)
 }
