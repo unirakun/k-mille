@@ -1,24 +1,24 @@
-import { createStore, keyValue, simpleObject } from 'k-ramel'
+import { createStore, types } from 'k-ramel'
 import listeners from './listeners'
 import drivers from './drivers'
 
 export default createStore(
   {
     data: {
-      invoices: keyValue({ key: 'id' }),
-      profile: simpleObject(),
+      invoices: types.keyValue(),
+      profile: types.object(),
     },
     ui: {
       list: {
-        invoices: keyValue({ key: 'id' }),
+        invoices: types.keyValue(),
       },
-      ok: simpleObject({ defaultData: false }),
-      id: simpleObject({ defaultData: '' }),
-      lines: keyValue({ key: 'title' }),
-      timetable: keyValue({ key: 'date' }),
-      client: simpleObject(),
-      dates: simpleObject(),
-      total: simpleObject({ defaultData: 0 }),
+      ok: types.object({ defaultData: false }),
+      id: types.string(),
+      lines: types.keyValue({ key: 'title' }),
+      timetable: types.keyValue({ key: 'date' }),
+      client: types.object(),
+      dates: types.object(),
+      total: types.number(),
     },
   },
   {

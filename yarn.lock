@@ -2,17 +2,17 @@
 # yarn lockfile v1
 
 
-"@k-ramel/driver-http@^0.12.0":
-  version "0.12.0"
-  resolved "https://registry.yarnpkg.com/@k-ramel/driver-http/-/driver-http-0.12.0.tgz#f8b726f04c6f49519899596f9464b76d7d5a3479"
+"@k-ramel/driver-http@^0.13.2":
+  version "0.13.2"
+  resolved "https://registry.yarnpkg.com/@k-ramel/driver-http/-/driver-http-0.13.2.tgz#9f446715be249c6ef64ceb6ce639e20ca37aabb0"
 
-"@k-ramel/driver-redux-little-router@^0.12.0":
-  version "0.12.0"
-  resolved "https://registry.yarnpkg.com/@k-ramel/driver-redux-little-router/-/driver-redux-little-router-0.12.0.tgz#7a7fbb2bcb05445fa8347debaf8c745051a20dcd"
+"@k-ramel/driver-redux-little-router@^0.13.2":
+  version "0.13.2"
+  resolved "https://registry.yarnpkg.com/@k-ramel/driver-redux-little-router/-/driver-redux-little-router-0.13.2.tgz#00614fef566d56182d1128d51fa9bbee85bc2ad5"
 
-"@k-ramel/react@^0.12.0":
-  version "0.12.0"
-  resolved "https://registry.yarnpkg.com/@k-ramel/react/-/react-0.12.0.tgz#88e6c5dcc09698a0398af99b053a41fe75f1069d"
+"@k-ramel/react@^0.13.2":
+  version "0.13.2"
+  resolved "https://registry.yarnpkg.com/@k-ramel/react/-/react-0.13.2.tgz#0126a00bd5808e2fc78268b4d9c37f30f47fe75d"
 
 "@vue/component-compiler-utils@^1.0.0":
   version "1.2.1"
@@ -5275,17 +5275,17 @@ jws@^3.1.4:
     jwa "^1.1.4"
     safe-buffer "^5.0.1"
 
-k-ramel@^0.12.0:
-  version "0.12.0"
-  resolved "https://registry.yarnpkg.com/k-ramel/-/k-ramel-0.12.0.tgz#e708ac86a0d22c1047e4c8362390dbf88e17f98f"
+k-ramel@^0.13.2:
+  version "0.13.2"
+  resolved "https://registry.yarnpkg.com/k-ramel/-/k-ramel-0.13.2.tgz#248d5bf27d8bc6023525428b474ac86ab69c4771"
   dependencies:
-    "@k-ramel/driver-http" "^0.12.0"
-    k-redux-factory "5.0.2"
-    redux "3.7.2"
+    "@k-ramel/driver-http" "^0.13.2"
+    k-redux-factory "6.0.0-rc5"
+    redux "4.0.0"
 
-k-redux-factory@5.0.2:
-  version "5.0.2"
-  resolved "https://registry.yarnpkg.com/k-redux-factory/-/k-redux-factory-5.0.2.tgz#79647d5fc40503d952370d8d35e64aaba7e62e5c"
+k-redux-factory@6.0.0-rc5:
+  version "6.0.0-rc5"
+  resolved "https://registry.yarnpkg.com/k-redux-factory/-/k-redux-factory-6.0.0-rc5.tgz#d6e9fdb7a5f7a526c6bf4a5c9b70eb796e112ddf"
 
 keygrip@~1.0.2:
   version "1.0.2"
@@ -7490,7 +7490,14 @@ redux-thunk@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/redux-thunk/-/redux-thunk-2.2.0.tgz#e615a16e16b47a19a515766133d1e3e99b7852e5"
 
-redux@3.7.2, redux@^3.7.2:
+redux@4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/redux/-/redux-4.0.0.tgz#aa698a92b729315d22b34a0553d7e6533555cc03"
+  dependencies:
+    loose-envify "^1.1.0"
+    symbol-observable "^1.2.0"
+
+redux@^3.7.2:
   version "3.7.2"
   resolved "https://registry.yarnpkg.com/redux/-/redux-3.7.2.tgz#06b73123215901d25d065be342eb026bc1c8537b"
   dependencies:
@@ -8610,7 +8617,7 @@ sw-toolbox@^3.4.0:
     path-to-regexp "^1.0.1"
     serviceworker-cache-polyfill "^4.0.0"
 
-symbol-observable@^1.0.3, symbol-observable@^1.0.4, symbol-observable@^1.1.0:
+symbol-observable@^1.0.3, symbol-observable@^1.0.4, symbol-observable@^1.1.0, symbol-observable@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/symbol-observable/-/symbol-observable-1.2.0.tgz#c22688aed4eab3cdc2dfeacbb561660560a00804"
 

@@ -1,24 +1,24 @@
-import { createStore, keyValue, simpleObject } from 'k-ramel'
+import { createStore, types } from 'k-ramel'
 import listeners from './listeners'
 import drivers from './drivers'
 
 export default createStore(
   {
     data: {
-      profile: simpleObject(),
-      fileId: simpleObject({ defaultData: '' }),
-      prices: simpleObject({ defaultData: [] }),
-      expenses: keyValue({ key: 'id' }),
-      emails: simpleObject(),
+      profile: types.object(),
+      fileId: types.string(),
+      prices: types.array(),
+      expenses: types.keyValue(),
+      emails: types.object(),
     },
     ui: {
-      header: simpleObject({ defaultData: { title: 'envoi' } }),
-      list: simpleObject({ defaultData: [] }),
-      price: simpleObject({ defaultData: 0 }),
-      context: simpleObject({ defaultData: 0 }),
-      needRefund: simpleObject({ defaultData: false }),
-      taxe: simpleObject({ defaultData: 0 }),
-      response: simpleObject({ defaultData: '' }),
+      header: types.object({ defaultData: { title: 'envoi' } }),
+      list: types.array(),
+      price: types.number(),
+      context: types.number(),
+      needRefund: types.bool(),
+      taxe: types.number(),
+      response: types.string(),
     },
   },
   {
