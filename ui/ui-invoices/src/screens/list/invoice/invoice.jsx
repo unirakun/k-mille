@@ -23,7 +23,9 @@ const Invoice = ({
         PDF
       </a>)}
     {id.includes('draft') && <button onClick={onRemove}>remove</button>}
-    {id.includes('draft') || <button onClick={onPaid}>paid</button>}
+    {(!id.includes('draft') && timetable.length === 0) &&
+      <button onClick={onPaid}>paid</button>
+    }
     {timetable.map(dueDate => (
       <DueDate key={dueDate} invoiceId={id} id={dueDate} />
     ))}
