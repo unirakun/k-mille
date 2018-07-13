@@ -5,7 +5,7 @@ export const load = (action, store, { http }) => {
 }
 
 export const set = ({ payload }, store) => {
-  store.data.invoices.set(payload)
+  store.data.invoices.set(payload.filter(invoice => !invoice.paid))
 }
 
 export const map = (action, store) => {
@@ -39,9 +39,8 @@ export const remove = async ({ payload }, store, { http }) => {
 
 export const setPaid = async ({ payload }, store, { http }) => {
   const invoice = store.data.invoices.get(payload)
-  const newInvoice = { ...invoice, paid: true }
 
-  await http('INVOICES').put('/api/invoices', newInvoice)
+  await http('INVOICES').put('/api/invoices', { ...invoice, paid: true })
 
-  store.data.invoices.add(newInvoice)
+  store.data.invoices.remove(invoice.id)
 }
