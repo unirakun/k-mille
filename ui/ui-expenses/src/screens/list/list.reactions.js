@@ -6,7 +6,6 @@ export const load = (action, store, { http, window }) => {
 
   window.addEventListener('paste', async (e) => {
     const image = await getClipboardData(e)
-    console.log(image)
     store.dispatch({ type: '@@ui/UPLOAD_IMAGE', payload: image })
   })
 }
