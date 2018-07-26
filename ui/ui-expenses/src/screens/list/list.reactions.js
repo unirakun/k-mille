@@ -1,7 +1,14 @@
 import pica from 'pica/dist/pica'
+import { getClipboardData } from './list.utils'
 
-export const load = (action, store, { http }) => {
+export const load = (action, store, { http, window }) => {
   http('EXPENSES').get('/api/expenses')
+
+  window.addEventListener('paste', async (e) => {
+    const image = await getClipboardData(e)
+    console.log(image)
+    store.dispatch({ type: '@@ui/UPLOAD_IMAGE', payload: image })
+  })
 }
 
 export const setExpenses = ({ payload }, store) => {
@@ -56,16 +63,21 @@ export const submit = ({ payload }, store, { window, http }) => {
           const reader2 = new window.FileReader()
           reader2.onerror = (readerE) => { store.dispatch({ type: '@@file/ON_ERROR', payload: readerE }) }
           reader2.onload = async (readerE) => {
-            http('IMAGES').post('/api/images', {
-              image: readerE.target.result.replace(/data:.*;base64,/, ''),
-              user: store.data.profile.get().name,
-            })
+            store.dispatch({ type: '@@ui/UPLOAD_IMAGE', payload: readerE.target.result })
           }
           reader2.readAsDataURL(blob)
         })
     })
   }
   reader.readAsDataURL(payload)
+}
+
+export const uploadImage =  ({ payload }, store, { http }) => {
+  console.log(payload)
+  http('IMAGES').post('/api/images', {
+    image: payload.replace(/data:.*;base64,/, ''),
+    user: store.data.profile.get().name,
+  })
 }
 
 export const sendEmails = (action, store, { http }) => {
