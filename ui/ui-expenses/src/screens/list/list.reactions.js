@@ -23,21 +23,23 @@ export const submit = async ({ payload }, store) => {
   store.dispatch({ type: '@@ui/IMAGE_RESIZED', payload: image })
 }
 
+const makeCanvas = img => {
+  const canvas = document.createElement("canvas")
+  canvas.width = img.width
+  canvas.height = img.height
+  return canvas
+}
+
 const resizeFile = (file) => new Promise((resolve, reject) => {
   // Create an image
   const img = new Image()
   img.src = window.URL.createObjectURL(file)
-  // Create an abstract canvas and get context
-  const canvas = document.createElement("canvas")
-  const ctx = canvas.getContext('2d')
   // Once the image loads, render the img on the canvas
-  img.onload = async function () {
-    // Update dimensions of the canvas with the dimensions of the image
-    canvas.width = this.width
-    canvas.height = this.height
-
+  img.onload = async () => {
+    // Create an abstract canvas and get context
+    const canvas = makeCanvas(img)
     // Draw the image
-    ctx.drawImage(img, 0, 0)
+    canvas.getContext('2d').drawImage(img, 0, 0)
 
     // Execute callback with the base64 URI of the image
     const image = await resizeImg(canvas)
@@ -48,12 +50,14 @@ const resizeFile = (file) => new Promise((resolve, reject) => {
 
 const resizeImg = img => new Promise((resolve, reject) => {
   const picaRunner = pica()
-  picaRunner.resize(img, document.createElement("canvas"))
-    .then(result => picaRunner.toBlob(result, 'image/png', 0.50))
+  // Create an abstract canvas and get context
+  const canvas = makeCanvas(img)
+  picaRunner.resize(img, canvas)
+    .then(result => picaRunner.toBlob(result, 'image/png'))
     .then((blob) => {
       const reader = new window.FileReader()
       reader.readAsDataURL(blob)
-      reader.onload = (readerE) => resolve(readerE.target.result)
+      reader.onload = readerE => resolve(readerE.target.result)
       reader.onerror = reject
     })
 })
