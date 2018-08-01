@@ -7,7 +7,7 @@ import {
   submit,
   sendEmails,
   setEmails,
-  uploadImage,
+  postImage,
 } from './list.reactions'
 
 export default [
@@ -18,7 +18,7 @@ export default [
   when('@@http/IMAGES>POST>ENDED')(goToCreate),
   when('@@http/IMAGES>POST>ENDED')(setPrices),
   when('@@ui/ON_SUBMIT')(submit),
-  when('@@ui/UPLOAD_IMAGE')(uploadImage),
+  when('@@ui/IMAGE_RESIZED')(postImage),
 
   // emails
   when('@@ui/ON_SEND')(sendEmails),

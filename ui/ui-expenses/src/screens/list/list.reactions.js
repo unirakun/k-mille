@@ -1,12 +1,67 @@
 import pica from 'pica/dist/pica'
-import { getClipboardData } from './list.utils'
 
 export const load = (action, store, { http, window }) => {
   http('EXPENSES').get('/api/expenses')
 
-  window.addEventListener('paste', async (e) => {
-    const image = await getClipboardData(e)
-    store.dispatch({ type: '@@ui/UPLOAD_IMAGE', payload: image })
+  window.addEventListener('paste', async (pasteEvent) => {
+    if (!pasteEvent || !pasteEvent.clipboardData || !pasteEvent.clipboardData.items) return
+
+    const { items } = pasteEvent.clipboardData
+    for (let i = 0; i < items.length; i++) {
+      const item = items[i]
+      // Skip content if not image
+      if (item.type.indexOf("image") === -1) continue
+      // get image as blob
+      const image = await resizeFile(item.getAsFile())
+      store.dispatch({ type: '@@ui/IMAGE_RESIZED', payload: image })
+    }
+  })
+}
+
+export const submit = async ({ payload }, store) => {
+  const image = await resizeFile(payload)
+  store.dispatch({ type: '@@ui/IMAGE_RESIZED', payload: image })
+}
+
+const resizeFile = (file) => new Promise((resolve, reject) => {
+  // Create an image
+  const img = new Image()
+  img.src = window.URL.createObjectURL(file)
+  // Create an abstract canvas and get context
+  const canvas = document.createElement("canvas")
+  const ctx = canvas.getContext('2d')
+  // Once the image loads, render the img on the canvas
+  img.onload = async function () {
+    // Update dimensions of the canvas with the dimensions of the image
+    canvas.width = this.width
+    canvas.height = this.height
+
+    // Draw the image
+    ctx.drawImage(img, 0, 0)
+
+    // Execute callback with the base64 URI of the image
+    const image = await resizeImg(canvas)
+    resolve(image)
+  }
+  img.onerror = reject
+})
+
+const resizeImg = img => new Promise((resolve, reject) => {
+  const picaRunner = pica()
+  picaRunner.resize(img, document.createElement("canvas"))
+    .then(result => picaRunner.toBlob(result, 'image/png', 0.50))
+    .then((blob) => {
+      const reader = new window.FileReader()
+      reader.readAsDataURL(blob)
+      reader.onload = (readerE) => resolve(readerE.target.result)
+      reader.onerror = reject
+    })
+})
+
+export const postImage = ({ payload }, store, { http }) => {
+  http('IMAGES').post('/api/images', {
+    image: payload.replace(/data:.*;base64,/, ''),
+    user: store.data.profile.get().name,
   })
 }
 
@@ -34,49 +89,6 @@ export const setPrices = ({ payload }, store) => {
   store.data.prices.set(payload.prices)
   store.ui.header.set({ title: 'ajout' })
   store.data.fileId.set(payload.fileId)
-}
-
-export const submit = ({ payload }, store, { window, http }) => {
-  // add image to a <img in DOM (the source of the transformation)
-  const reader = new window.FileReader()
-  reader.onload = (e) => {
-    const img = window.document.getElementById('source')
-    img.src = e.target.result
-
-    window.requestAnimationFrame(() => {
-      img.width = img.clientWidth
-      img.height = img.clientHeight
-
-      let targetWidth = img.width * 0.30
-      if (targetWidth < 1000) targetWidth = 1000
-      const targetHeight = (img.height / img.width) * targetWidth
-
-      const canvas = window.document.getElementById('resize')
-      canvas.width = targetWidth
-      canvas.height = targetHeight
-
-      const picaRunner = pica()
-      picaRunner.resize(img, canvas)
-        .then(result => picaRunner.toBlob(result, 'image/jpeg', 0.50))
-        .then((blob) => {
-          const reader2 = new window.FileReader()
-          reader2.onerror = (readerE) => { store.dispatch({ type: '@@file/ON_ERROR', payload: readerE }) }
-          reader2.onload = async (readerE) => {
-            store.dispatch({ type: '@@ui/UPLOAD_IMAGE', payload: readerE.target.result })
-          }
-          reader2.readAsDataURL(blob)
-        })
-    })
-  }
-  reader.readAsDataURL(payload)
-}
-
-export const uploadImage =  ({ payload }, store, { http }) => {
-  console.log(payload)
-  http('IMAGES').post('/api/images', {
-    image: payload.replace(/data:.*;base64,/, ''),
-    user: store.data.profile.get().name,
-  })
 }
 
 export const sendEmails = (action, store, { http }) => {
