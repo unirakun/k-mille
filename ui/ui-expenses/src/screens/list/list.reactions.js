@@ -15,7 +15,7 @@ const resizeFile = (file, coeff = 1) => new Promise((resolve, reject) => {
   // Once the image loads, render the img on the canvas
   img.onload = async () => {
     const { width, height } = img
-    // ratio with a width at 1000px (img.width * 100 / 1000), and max is `coeff`
+    // if image it's too small, coeff is reduced
     const adjustCoeff = Math.min(Math.max(width, height), 1000) * coeff / 1000
     // Create an abstract canvas and get context
     const canvas = makeCanvas(img, adjustCoeff)
