@@ -1,40 +1,20 @@
 import pica from 'pica/dist/pica'
 
 
-const makeCanvas = (img, coeff = 1) => {
-  const canvas = document.createElement("canvas")
+const makeCanvas = ({ window }) => (img, coeff = 1) => {
+  const canvas = window.document.createElement('canvas')
   canvas.width = img.width / coeff
   canvas.height = img.height / coeff
   return canvas
 }
 
-const resizeFile = (file, coeff = 1) => new Promise((resolve, reject) => {
-  // Create an image
-  const img = new Image()
-  img.src = window.URL.createObjectURL(file)
-  // Once the image loads, render the img on the canvas
-  img.onload = async () => {
-    const { width, height } = img
-    // if image it's too small, coeff is reduced
-    const adjustCoeff = Math.min(Math.max(width, height), 1000) * coeff / 1000
-    // Create an abstract canvas and get context
-    const canvas = makeCanvas(img, adjustCoeff)
-    // Draw the image
-    canvas.getContext('2d').drawImage(img, 0, 0, width / adjustCoeff, height / adjustCoeff)
 
-    // Execute callback with the base64 URI of the image
-    const image = await resizeImg(canvas)
-    resolve(image)
-  }
-  img.onerror = reject
-})
-
-const resizeImg = img => new Promise((resolve, reject) => {
+const resizeImg = ({ window }) => img => new Promise((resolve, reject) => {
   const picaRunner = pica()
   // Create an abstract canvas and get context
-  const canvas = makeCanvas(img)
+  const canvas = makeCanvas({ window })(img)
   picaRunner.resize(img, canvas)
-    .then(result => picaRunner.toBlob(result, 'image/jpeg', ))
+    .then(result => picaRunner.toBlob(result, 'image/jpeg'))
     .then((blob) => {
       const reader = new window.FileReader()
       reader.readAsDataURL(blob)
@@ -43,12 +23,33 @@ const resizeImg = img => new Promise((resolve, reject) => {
     })
 })
 
-export const load = (action, store, { http, window }) => {
+const resizeFile = ({ window }) => (file, coeff = 1) => new Promise((resolve, reject) => {
+  // Create an image
+  const img = window.document.createElement('img')
+  img.src = window.URL.createObjectURL(file)
+  // Once the image loads, render the img on the canvas
+  img.onload = async () => {
+    const { width, height } = img
+    // if image it's too small, coeff is reduced
+    const adjustCoeff = Math.min(Math.max(width, height), 1000) * (coeff / 1000)
+    // Create an abstract canvas and get context
+    const canvas = makeCanvas({ window })(img, adjustCoeff)
+    // Draw the image
+    canvas.getContext('2d').drawImage(img, 0, 0, width / adjustCoeff, height / adjustCoeff)
+
+    // Execute callback with the base64 URI of the image
+    const image = await resizeImg({ window })(canvas)
+    resolve(image)
+  }
+  img.onerror = reject
+})
+
+export const load = (action, store, { http }) => {
   http('EXPENSES').get('/api/expenses')
 }
 
-export const submit = async ({ payload }, store) => {
-  const image = await resizeFile(payload, 2)
+export const submit = async ({ payload }, store, drivers) => {
+  const image = await resizeFile(drivers)(payload, 2)
   store.dispatch({ type: '@@ui/IMAGE_RESIZED', payload: image })
 }
 
