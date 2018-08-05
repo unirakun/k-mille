@@ -20,6 +20,7 @@ export default createStore(
       taxe: types.number(),
       response: types.string(),
     },
+    devices: {}, // FIXME: bug krml
   },
   {
     listeners,

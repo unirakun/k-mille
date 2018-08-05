@@ -56,6 +56,7 @@ export const submit = ({ payload }, store, { window, http }) => {
           const reader2 = new window.FileReader()
           reader2.onerror = (readerE) => { store.dispatch({ type: '@@file/ON_ERROR', payload: readerE }) }
           reader2.onload = async (readerE) => {
+            store.devices.cameras.capture.set(readerE.target.result)
             http('IMAGES').post('/api/images', {
               image: readerE.target.result.replace(/data:.*;base64,/, ''),
               user: store.data.profile.get().name,

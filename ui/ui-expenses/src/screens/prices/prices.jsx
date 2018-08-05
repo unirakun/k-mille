@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { component } from 'ui-hocs'
+import Capture from './capture'
 import Price from './price'
 import Context from './context'
 import NeedRefund from './needRefund'
@@ -27,6 +28,7 @@ const contexts = [
   },
 ]
 
+
 const Prices = ({
   classes,
   prices,
@@ -35,6 +37,9 @@ const Prices = ({
   cancel,
 }) => (
   <Fragment>
+    <div className={styles.block}>
+      <Capture />
+    </div>
     <div className={classes.block}>
       <h2>Prix</h2>
       <div className={classes.buttons}>
