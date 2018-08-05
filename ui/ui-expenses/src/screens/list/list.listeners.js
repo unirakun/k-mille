@@ -4,7 +4,6 @@ import {
   setExpenses,
   goToCreate,
   setPrices,
-  submit,
   postImage,
   sendEmails,
   setEmails,
@@ -17,8 +16,7 @@ export default [
   // new expense
   when('@@http/IMAGES>POST>ENDED')(goToCreate),
   when('@@http/IMAGES>POST>ENDED')(setPrices),
-  when('@@ui/ON_SUBMIT')(submit),
-  when('@@ui/IMAGE_RESIZED')(postImage),
+  when('@@ui/ON_SUBMIT')(postImage),
 
   // emails
   when('@@ui/ON_SEND')(sendEmails),
