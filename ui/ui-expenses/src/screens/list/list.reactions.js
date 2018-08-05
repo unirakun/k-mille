@@ -1,7 +1,30 @@
+/* eslint no-plusplus: ["error", { "allowForLoopAfterthoughts": true }] */
 import pica from 'pica/dist/pica'
+
+export const addListener = (action, store, { window }) => {
+  window.addEventListener('paste', pasteEvent => store.dispatch({ type: '@@ui/ON_PASTE', payload: pasteEvent }))
+}
+
+export const removeListener = (action, store, { window }) => {
+  window.removeEventListener('paste')
+}
 
 export const load = (action, store, { http }) => {
   http('EXPENSES').get('/api/expenses')
+}
+
+export const submitClipboardImage = async ({ payload }, store) => {
+  if (!payload || !payload.clipboardData || !payload.clipboardData.items) return
+
+  const { items } = payload.clipboardData
+  for (let i = 0; i < items.length; i++) { // items it's not an array
+    const item = items[i]
+    // Skip content if not an image
+    if (/image.*/.test(item.type)) {
+      // dispatch submit event with raw image pasted
+      store.dispatch({ type: '@@ui/ON_SUBMIT', payload: item.getAsFile() })
+    }
+  }
 }
 
 export const setExpenses = ({ payload }, store) => {
