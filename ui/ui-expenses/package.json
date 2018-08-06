@@ -12,20 +12,20 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
-    "@k-ramel/driver-redux-little-router": "^0.13.2",
     "@k-ramel/react": "^0.13.2",
+    "@k-redux-router/core": "^0.4.1",
+    "@k-redux-router/react-k-ramel": "^0.4.2",
     "babel-polyfill": "^6.26.0",
     "date-fns": "^1.29.0",
-    "hoc-little-router": "^1.2.0",
     "hoc-react-loader": "^6.3.0",
     "k-ramel": "^0.13.2",
+    "path-to-regexp": "^2.2.1",
     "pica": "^4.0.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-form": "^3.0.1",
     "react-scripts": "1.1.4",
     "recompose": "^0.26.0",
-    "redux-little-router": "^15.0.0",
     "tinycolor2": "^1.4.1",
     "ui-hocs": "^1.0.0"
   },

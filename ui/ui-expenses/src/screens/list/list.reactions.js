@@ -21,7 +21,7 @@ export const setExpenses = ({ payload }, store) => {
 }
 
 export const goToCreate = (action, store, { router }) => {
-  router.push('/expense')
+  router.push('create')
 }
 
 export const setPrices = ({ payload }, store) => {

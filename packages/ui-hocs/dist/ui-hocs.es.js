@@ -3,7 +3,7 @@ import jss from 'react-jss';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { inject, listen } from '@k-ramel/react';
-import router from 'hoc-little-router';
+import { forRoute } from '@k-redux-router/react-k-ramel';
 import loaderHoc from 'hoc-react-loader/build/core';
 
 function component (ref) {
@@ -35,7 +35,7 @@ function container (ref) {
 
     var hocs = [];
     if (screenName) 
-        { hocs.push(router.absolute(screenName)); }
+        { hocs.push(forRoute.absolute(screenName)); }
     if (listeners) 
         { hocs.push(listen(listeners, screenName || name)); }
     if (form) {
