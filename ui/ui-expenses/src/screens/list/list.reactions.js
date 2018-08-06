@@ -1,12 +1,16 @@
 /* eslint no-plusplus: ["error", { "allowForLoopAfterthoughts": true }] */
 import pica from 'pica/dist/pica'
 
+// ref to paste function, it's used to remove listener.
+let pasteEvent
+
 export const addListener = (action, store, { window }) => {
-  window.addEventListener('paste', pasteEvent => store.dispatch({ type: '@@ui/ON_PASTE', payload: pasteEvent }))
+  pasteEvent = e => store.dispatch({ type: '@@ui/ON_PASTE', payload: e })
+  window.addEventListener('paste', pasteEvent)
 }
 
 export const removeListener = (action, store, { window }) => {
-  window.removeEventListener('paste')
+  window.removeEventListener('paste', pasteEvent)
 }
 
 export const load = (action, store, { http }) => {
@@ -17,7 +21,7 @@ export const submitClipboardImage = async ({ payload }, store) => {
   if (!payload || !payload.clipboardData || !payload.clipboardData.items) return
 
   const { items } = payload.clipboardData
-  for (let i = 0; i < items.length; i++) { // items it's not an array
+  for (let i = 0; i < items.length; i++) { // items is a DataTransferItemList : https://developer.mozilla.org/en-US/docs/Web/API/DataTransferItemList
     const item = items[i]
     // Skip content if not an image
     if (/image.*/.test(item.type)) {
