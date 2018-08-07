@@ -1,7 +1,76 @@
 import pica from 'pica/dist/pica'
 
-export const load = (action, store, { http }) => {
+
+const makeCanvas = (img, coeff = 1) => {
+  const canvas = document.createElement("canvas")
+  canvas.width = img.width / coeff
+  canvas.height = img.height / coeff
+  return canvas
+}
+
+const resizeFile = (file, coeff = 1) => new Promise((resolve, reject) => {
+  // Create an image
+  const img = new Image()
+  img.src = window.URL.createObjectURL(file)
+  // Once the image loads, render the img on the canvas
+  img.onload = async () => {
+    const { width, height } = img
+    // if image it's too small, coeff is reduced
+    const adjustCoeff = Math.min(Math.max(width, height), 1000) * coeff / 1000
+    // Create an abstract canvas and get context
+    const canvas = makeCanvas(img, adjustCoeff)
+    // Draw the image
+    canvas.getContext('2d').drawImage(img, 0, 0, width / adjustCoeff, height / adjustCoeff)
+
+    // Execute callback with the base64 URI of the image
+    const image = await resizeImg(canvas)
+    resolve(image)
+  }
+  img.onerror = reject
+})
+
+const resizeImg = img => new Promise((resolve, reject) => {
+  const picaRunner = pica()
+  // Create an abstract canvas and get context
+  const canvas = makeCanvas(img)
+  picaRunner.resize(img, canvas)
+    .then(result => picaRunner.toBlob(result, 'image/jpeg', ))
+    .then((blob) => {
+      const reader = new window.FileReader()
+      reader.readAsDataURL(blob)
+      reader.onload = readerE => resolve(readerE.target.result)
+      reader.onerror = reject
+    })
+})
+
+export const load = (action, store, { http, window }) => {
   http('EXPENSES').get('/api/expenses')
+
+  window.addEventListener('paste', async (pasteEvent) => {
+    if (!pasteEvent || !pasteEvent.clipboardData || !pasteEvent.clipboardData.items) return
+
+    const { items } = pasteEvent.clipboardData
+    for (let i = 0; i < items.length; i++) {
+      const item = items[i]
+      // Skip content if not image
+      if (item.type.indexOf("image") === -1) continue
+      // get image as blob
+      const image = await resizeFile(item.getAsFile(), 2)
+      store.dispatch({ type: '@@ui/IMAGE_RESIZED', payload: image })
+    }
+  })
+}
+
+export const submit = async ({ payload }, store) => {
+  const image = await resizeFile(payload, 2)
+  store.dispatch({ type: '@@ui/IMAGE_RESIZED', payload: image })
+}
+
+export const postImage = ({ payload }, store, { http }) => {
+  http('IMAGES').post('/api/images', {
+    image: payload.replace(/data:.*;base64,/, ''),
+    user: store.data.profile.get().name,
+  })
 }
 
 export const setExpenses = ({ payload }, store) => {
@@ -28,44 +97,6 @@ export const setPrices = ({ payload }, store) => {
   store.data.prices.set(payload.prices)
   store.ui.header.set({ title: 'ajout' })
   store.data.fileId.set(payload.fileId)
-}
-
-export const submit = ({ payload }, store, { window, http }) => {
-  // add image to a <img in DOM (the source of the transformation)
-  const reader = new window.FileReader()
-  reader.onload = (e) => {
-    const img = window.document.getElementById('source')
-    img.src = e.target.result
-
-    window.requestAnimationFrame(() => {
-      img.width = img.clientWidth
-      img.height = img.clientHeight
-
-      let targetWidth = img.width * 0.30
-      if (targetWidth < 1000) targetWidth = 1000
-      const targetHeight = (img.height / img.width) * targetWidth
-
-      const canvas = window.document.getElementById('resize')
-      canvas.width = targetWidth
-      canvas.height = targetHeight
-
-      const picaRunner = pica()
-      picaRunner.resize(img, canvas)
-        .then(result => picaRunner.toBlob(result, 'image/jpeg', 0.50))
-        .then((blob) => {
-          const reader2 = new window.FileReader()
-          reader2.onerror = (readerE) => { store.dispatch({ type: '@@file/ON_ERROR', payload: readerE }) }
-          reader2.onload = async (readerE) => {
-            http('IMAGES').post('/api/images', {
-              image: readerE.target.result.replace(/data:.*;base64,/, ''),
-              user: store.data.profile.get().name,
-            })
-          }
-          reader2.readAsDataURL(blob)
-        })
-    })
-  }
-  reader.readAsDataURL(payload)
 }
 
 export const sendEmails = (action, store, { http }) => {

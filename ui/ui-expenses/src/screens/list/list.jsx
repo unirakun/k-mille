@@ -13,10 +13,6 @@ const List = ({
     <Emails />
     <Expenses />
     <Add />
-    <div className={classes.image}>
-      <canvas id="resize" height="200" width="200" />
-      <img id="source" alt="hidden" />
-    </div>
   </div>
 )
 
