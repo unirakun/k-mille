@@ -1,3 +1,29 @@
+// ref to paste function, it's used to remove listener.
+let pasteEvent
+
+export const addListener = (action, store, { window }) => {
+  pasteEvent = e => store.dispatch({ type: '@@ui/ON_PASTE', payload: e })
+  window.addEventListener('paste', pasteEvent)
+}
+
+export const removeListener = (action, store, { window }) => {
+  window.removeEventListener('paste', pasteEvent)
+}
+
+export const pasteImage = ({ payload }, store) => {
+  if (!payload || !payload.clipboardData || !payload.clipboardData.items) return
+
+  const { items } = payload.clipboardData
+  for (let i = 0; i < items.length; i += 1) { // items is a DataTransferItemList : https://developer.mozilla.org/en-US/docs/Web/API/DataTransferItemList
+    const item = items[i]
+    // Skip content if not an image
+    if (/image.*/.test(item.type)) {
+      // dispatch submit event with raw image pasted
+      store.dispatch({ type: '@@ui/ON_SUBMIT', payload: item.getAsFile() })
+    }
+  }
+}
+
 export const load = (action, store, { http }) => {
   http('EXPENSES').get('/api/expenses')
 }
