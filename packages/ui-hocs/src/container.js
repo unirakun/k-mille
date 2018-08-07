@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import { compose, withContext } from 'recompose'
 import { inject, listen } from '@k-ramel/react'
-import router from 'hoc-little-router'
+import { forRoute } from '@k-redux-router/react-k-ramel'
 import loaderHoc from 'hoc-react-loader/build/core'
 import LoadingIndicator from './loadingIndicator'
 
@@ -15,7 +15,7 @@ export default ({
 } = {}) => {
   const hocs = []
   // route (hide or not the component)
-  if (screenName) hocs.push(router.absolute(screenName))
+  if (screenName) hocs.push(forRoute.absolute(screenName))
 
   // listeners
   if (listeners) hocs.push(listen(listeners, screenName || name))

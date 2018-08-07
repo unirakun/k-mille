@@ -1,10 +1,9 @@
 /* eslint-env browser */
-import router from '@k-ramel/driver-redux-little-router'
-import routes from './routes'
+import router from './router'
 import pica from './pica'
 
 export default {
-  router: router(routes),
+  router,
   window: { getDriver: () => window },
   pica,
 }
