@@ -1,9 +1,9 @@
 /* eslint-env browser */
 import router from './router'
-import pica from './pica'
+import image from './image'
 
 export default {
   router,
   window: { getDriver: () => window },
-  pica,
+  image,
 }

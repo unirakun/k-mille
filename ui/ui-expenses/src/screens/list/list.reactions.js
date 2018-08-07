@@ -2,11 +2,14 @@ export const load = (action, store, { http }) => {
   http('EXPENSES').get('/api/expenses')
 }
 
-export const postImage = async ({ payload }, store, { http, pica }) => {
+export const submit = ({ payload }, store, { image }) => {
   // compress and resize by 2 the image
-  const imageReduced = await pica.reduce(payload, 2)
+  image.reduce(payload)
+}
+
+export const postImage = ({ payload }, store, { http }) => {
   http('IMAGES').post('/api/images', {
-    image: imageReduced,
+    image: payload,
     user: store.data.profile.get().name,
   })
 }

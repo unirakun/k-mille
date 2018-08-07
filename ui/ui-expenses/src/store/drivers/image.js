@@ -28,7 +28,7 @@ const reduceImg = img => new Promise(async (resolve, reject) => {
   reader.onerror = reject
 })
 
-const reduce = store => file => new Promise(async (resolve) => {
+const reduce = store => (file) => {
   // Create an image with input file
   const img = window.document.createElement('img')
   img.src = window.URL.createObjectURL(file)
@@ -37,12 +37,10 @@ const reduce = store => file => new Promise(async (resolve) => {
     // Execute callback with the base64 URI of the image
     const image = (await reduceImg(img)).replace(/data:.*;base64,/, '')
     // send an event with reduced image
-    store.dispatch({ type: '@@pica/IMAGE_REDUCED', payload: image })
-    // return the reduced image
-    resolve(image)
+    store.dispatch({ type: '@@image/IMAGE_REDUCED', payload: image })
   }
-  img.onerror = error => store.dispatch({ type: '@@pica/IMAGE_REDUCED>ERROR', payload: error })
-})
+  img.onerror = error => store.dispatch({ type: '@@image/IMAGE_REDUCED>ERROR', payload: error })
+}
 
 export default {
   getDriver: store => ({
