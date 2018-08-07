@@ -1,10 +1,11 @@
 /* eslint-env browser */
 import pica from 'pica/dist/pica'
 
-const makeReducingCanvas = (img, coeff = 1) => {
+const makeReducingCanvas = (img) => {
   const { width, height } = img
-  // if image it's too small, coeff is reduced
-  const coeffAdjusted = Math.min(Math.max(width, height), 1000) * (coeff / 1000)
+  // reduce image by coeff 2.
+  // but if image it's too small, coeff is reduced
+  const coeffAdjusted = Math.min(Math.max(width, height), 1000) * (2 / 1000)
   // make canvas with reduced size
   const canvas = window.document.createElement('canvas')
   canvas.width = width / coeffAdjusted
@@ -13,9 +14,9 @@ const makeReducingCanvas = (img, coeff = 1) => {
   return canvas
 }
 
-const reduceImg = (img, coeff) => new Promise(async (resolve, reject) => {
+const reduceImg = img => new Promise(async (resolve, reject) => {
   // Create an abstract resizing canvas
-  const canvas = makeReducingCanvas(img, coeff)
+  const canvas = makeReducingCanvas(img)
   // zip image
   const picaRunner = pica()
   const result = await picaRunner.resize(img, canvas)
@@ -27,14 +28,14 @@ const reduceImg = (img, coeff) => new Promise(async (resolve, reject) => {
   reader.onerror = reject
 })
 
-const reduce = store => (file, coeff) => new Promise(async (resolve) => {
+const reduce = store => file => new Promise(async (resolve) => {
   // Create an image with input file
   const img = window.document.createElement('img')
   img.src = window.URL.createObjectURL(file)
   // Once the image loads, render the image on the canvas
   img.onload = async () => {
     // Execute callback with the base64 URI of the image
-    const image = (await reduceImg(img, coeff)).replace(/data:.*;base64,/, '')
+    const image = (await reduceImg(img)).replace(/data:.*;base64,/, '')
     // send an event with reduced image
     store.dispatch({ type: '@@pica/IMAGE_REDUCED', payload: image })
     // return the reduced image
