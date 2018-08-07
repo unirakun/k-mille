@@ -1,8 +1,9 @@
 /* eslint-env browser */
-import router from '@k-ramel/driver-redux-little-router'
-import routes from './routes'
+import router from './router'
+import image from './image'
 
 export default {
-  router: router(routes),
+  router,
   window: { getDriver: () => window },
+  image,
 }

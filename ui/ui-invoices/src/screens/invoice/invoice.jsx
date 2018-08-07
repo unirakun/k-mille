@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Form, Text } from 'react-form'
-import { Link } from 'redux-little-router'
+import { Link } from '@k-redux-router/react-k-ramel'
 import { component } from 'ui-hocs'
 import Line from './line'
 import Timetable from './timetable'
@@ -23,7 +23,7 @@ const Invoice = ({
 
   return (
     <div>
-      <Link href="/">list</Link>
+      <Link code="list">list</Link>
       <h2>Id</h2>
       <Form onSubmit={setId} preventDefault defaultValues={{ id }}>
         {({ submitForm }) => (

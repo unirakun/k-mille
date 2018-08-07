@@ -6,8 +6,9 @@ import {
   setExpenses,
   goToCreate,
   setPrices,
-  submit,
-  submitClipboardImage,
+  pasteImage,
+  reduceImage,
+  postImage,
   sendEmails,
   setEmails,
 } from './list.reactions'
@@ -21,8 +22,9 @@ export default [
   // new expense
   when('@@http/IMAGES>POST>ENDED')(goToCreate),
   when('@@http/IMAGES>POST>ENDED')(setPrices),
-  when('@@ui/ON_SUBMIT')(submit),
-  when('@@ui/ON_PASTE')(submitClipboardImage),
+  when('@@ui/ON_PASTE')(pasteImage),
+  when('@@ui/ON_SUBMIT')(reduceImage),
+  when('@@image/IMAGE_REDUCED')(postImage),
 
   // emails
   when('@@ui/ON_SEND')(sendEmails),
