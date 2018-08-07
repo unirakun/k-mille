@@ -4,8 +4,10 @@ import pica from 'pica/dist/pica'
 const makeReducingCanvas = (img) => {
   const { width, height } = img
   // reduce image by coeff 2.
+  const COEFF = 1.5
   // but if image it's too small, coeff is reduced
-  const coeffAdjusted = Math.min(Math.max(width, height), 1000) * (2 / 1000)
+  const MIN_SIZE = 2000
+  const coeffAdjusted = Math.min(Math.max(width, height), MIN_SIZE) * (COEFF / MIN_SIZE)
   // make canvas with reduced size
   const canvas = window.document.createElement('canvas')
   canvas.width = width / coeffAdjusted
