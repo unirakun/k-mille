@@ -2,7 +2,7 @@ export const load = (action, store, { http }) => {
   http('EXPENSES').get('/api/expenses')
 }
 
-export const submit = ({ payload }, store, { image }) => {
+export const reduceImage = ({ payload }, store, { image }) => {
   // compress and resize by 2 the image
   image.reduce(payload)
 }
