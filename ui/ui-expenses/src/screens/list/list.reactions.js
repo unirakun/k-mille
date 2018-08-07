@@ -3,7 +3,6 @@ export const load = (action, store, { http }) => {
 }
 
 export const reduceImage = ({ payload }, store, { image }) => {
-  // compress and resize by 2 the image
   image.reduce(payload)
 }
 
