@@ -1,4 +1,3 @@
-/* eslint no-plusplus: ["error", { "allowForLoopAfterthoughts": true }] */
 // ref to paste function, it's used to remove listener.
 let pasteEvent
 
@@ -15,7 +14,7 @@ export const pasteImage = ({ payload }, store) => {
   if (!payload || !payload.clipboardData || !payload.clipboardData.items) return
 
   const { items } = payload.clipboardData
-  for (let i = 0; i < items.length; i++) { // items is a DataTransferItemList : https://developer.mozilla.org/en-US/docs/Web/API/DataTransferItemList
+  for (let i = 0; i < items.length; i += 1) { // items is a DataTransferItemList : https://developer.mozilla.org/en-US/docs/Web/API/DataTransferItemList
     const item = items[i]
     // Skip content if not an image
     if (/image.*/.test(item.type)) {
