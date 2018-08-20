@@ -5,7 +5,7 @@ import Price from './price'
 import Context from './context'
 import NeedRefund from './needRefund'
 import Taxe from './taxe'
-import styles from './prices.styles'
+import styles from './expense.styles'
 
 const taxes = [0.2, 0.1, 0.055, 0, 'n/a']
 
@@ -27,7 +27,7 @@ const contexts = [
   },
 ]
 
-const Prices = ({
+const Expense = ({
   classes,
   prices,
   response,
@@ -72,7 +72,7 @@ const Prices = ({
   </Fragment>
 )
 
-Prices.propTypes = {
+Expense.propTypes = {
   classes: PropTypes.object,
   prices: PropTypes.array,
   response: PropTypes.string,
@@ -80,7 +80,7 @@ Prices.propTypes = {
   cancel: PropTypes.func,
 }
 
-Prices.defaultProps = {
+Expense.defaultProps = {
   classes: {},
   prices: [],
   response: '',
@@ -88,4 +88,4 @@ Prices.defaultProps = {
   cancel: undefined,
 }
 
-export default component({ styles })(Prices)
+export default component({ styles })(Expense)

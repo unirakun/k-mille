@@ -1,9 +1,8 @@
 import { container } from 'ui-hocs'
-import listeners from './prices.listeners'
-import Component from './prices'
+import listeners from './expense.listeners'
+import Component from './expense'
 
-// TODO: rename directory after screenName (create)
-const screenName = 'create'
+const screenName = 'expense'
 
 const mapStore = store => ({
   prices: store.data.prices.get(),

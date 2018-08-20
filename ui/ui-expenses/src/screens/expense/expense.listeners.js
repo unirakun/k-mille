@@ -1,5 +1,5 @@
 import { when } from 'k-ramel'
-import { init, add, cancel, goBack, response, setPrice, setTaxe, setContext, setNeedRefund, error } from './prices.reactions'
+import { init, add, cancel, goBack, response, setPrice, setTaxe, setContext, setNeedRefund, error } from './expense.reactions'
 
 export default [
   when('@@krf/SET>DATA>PRICES')(init),
