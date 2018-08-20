@@ -4,7 +4,7 @@ import {
   addListener,
   removeListener,
   setExpenses,
-  goToCreate,
+  goToExpense,
   setPrices,
   pasteImage,
   reduceImage,
@@ -20,7 +20,7 @@ export default [
   when('@@http/EXPENSES>GET>ENDED')(setExpenses),
 
   // new expense
-  when('@@http/IMAGES>POST>ENDED')(goToCreate),
+  when('@@http/IMAGES>POST>ENDED')(goToExpense),
   when('@@http/IMAGES>POST>ENDED')(setPrices),
   when('@@ui/ON_PASTE')(pasteImage),
   when('@@ui/ON_SUBMIT')(reduceImage),

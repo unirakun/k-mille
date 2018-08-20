@@ -55,8 +55,8 @@ export const setExpenses = ({ payload }, store) => {
   store.ui.list.set(toPrint)
 }
 
-export const goToCreate = (action, store, { router }) => {
-  router.push('create')
+export const goToExpense = (action, store, { router }) => {
+  router.push('expense')
 }
 
 export const setPrices = ({ payload }, store) => {

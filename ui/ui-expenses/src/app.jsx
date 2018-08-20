@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { component } from 'ui-hocs'
 import Header from './components/header'
 import List from './screens/list'
-import Prices from './screens/prices'
+import Expense from './screens/expense'
 import styles from './app.styles'
 
 const App = ({
@@ -14,7 +14,7 @@ const App = ({
 
     {/* screens */}
     <List />
-    <Prices />
+    <Expense />
   </div>
 )
 
