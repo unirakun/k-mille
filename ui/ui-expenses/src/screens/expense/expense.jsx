@@ -30,7 +30,6 @@ const contexts = [
 const Expense = ({
   classes,
   prices,
-  response,
   add,
   cancel,
 }) => (
@@ -68,14 +67,12 @@ const Expense = ({
         <button onClick={cancel}>CANCEL</button>
       </div>
     </div>
-    <div>{response}</div>
   </Fragment>
 )
 
 Expense.propTypes = {
   classes: PropTypes.object,
   prices: PropTypes.array,
-  response: PropTypes.string,
   add: PropTypes.func,
   cancel: PropTypes.func,
 }
@@ -83,7 +80,6 @@ Expense.propTypes = {
 Expense.defaultProps = {
   classes: {},
   prices: [],
-  response: '',
   add: undefined,
   cancel: undefined,
 }

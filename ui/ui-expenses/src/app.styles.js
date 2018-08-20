@@ -5,6 +5,10 @@ export const colors = {
   white: '#ffffff',
   blue: '#4d6cfa',
   green: '#8BC34A',
+  info: '#ffffff',
+  success: '#4caf50',
+  warning: '#ff9800',
+  error: '#f44336',
 }
 
 export default {
