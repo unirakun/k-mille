@@ -28,6 +28,11 @@ export const load = (action, store, { http }) => {
   http('EXPENSES').get('/api/expenses')
 }
 
+export const init = (action, store) => {
+  store.data.fileId.reset()
+  store.data.prices.reset()
+}
+
 export const reduceImage = ({ payload }, store, { image }) => {
   image.reduce(payload)
 }
