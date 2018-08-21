@@ -1,6 +1,7 @@
 import { when } from 'k-ramel'
 import {
   load,
+  init,
   addListener,
   removeListener,
   setExpenses,
@@ -15,6 +16,7 @@ import {
 
 export default [
   when('@@krml/LISTENERS>ADDED>list')(load),
+  when('@@krml/LISTENERS>ADDED>list')(init),
   when('@@krml/LISTENERS>ADDED>list')(addListener),
   when('@@krml/LISTENERS>REMOVING>list')(removeListener),
   when('@@http/EXPENSES>GET>ENDED')(setExpenses),
