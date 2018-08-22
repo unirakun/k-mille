@@ -43,7 +43,8 @@ export const setContext = (({ payload }, store) => store.ui.context.set(payload)
 
 export const setNeedRefund = (({ payload }, store) => store.ui.needRefund.set(payload))
 
-export const error = (({ payload }, store) => {
-  store.ui.response.set('an error occured 🤮')
-  console.warn('error when adding price: ', payload)
+export const success = ((action, store, { notification }) => notification.success('expense added 👏'))
+
+export const error = ((action, store, { notification }) => {
+  notification.error('🤮 error ocured when trying to add the expense ')
 })

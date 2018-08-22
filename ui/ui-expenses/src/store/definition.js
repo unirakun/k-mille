@@ -15,6 +15,6 @@ export default {
     context: types.number(),
     needRefund: types.bool(),
     taxe: types.number(),
-    response: types.string(),
+    notifications: types.keyValue(),
   },
 }
