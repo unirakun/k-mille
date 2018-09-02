@@ -19,13 +19,12 @@ const Toast = ({
 Toast.propTypes = {
   classes: PropTypes.object,
   className: PropTypes.string,
-  message: PropTypes.object,
+  message: PropTypes.string.isRequired,
 }
 
 Toast.defaultProps = {
   classes: {},
   className: '',
-  message: {},
 }
 
 export default component({ styles })(Toast)
