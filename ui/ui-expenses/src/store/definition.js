@@ -6,7 +6,6 @@ export default {
     fileId: types.string(),
     prices: types.array(),
     expenses: types.keyValue(),
-    emails: types.object(),
   },
   ui: {
     header: types.object({ defaultData: { title: 'envoi' } }),
