@@ -12,6 +12,7 @@ import {
   postImage,
   sendEmails,
   setEmails,
+  notificationEmail,
 } from './list.reactions'
 
 export default [
@@ -32,4 +33,5 @@ export default [
   when('@@ui/ON_SEND')(sendEmails),
   when('@@http/EMAILS>POST>ENDED')(setEmails),
   when('@@http/EMAILS>POST>ENDED')(load),
+  when('@@http/EMAILS>POST>ENDED')(notificationEmail),
 ]
