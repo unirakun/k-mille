@@ -77,3 +77,7 @@ export const sendEmails = (action, store, { http }) => {
 export const setEmails = ({ payload }, store) => {
   store.data.emails.set(payload)
 }
+
+export const notificationEmail = (action, store, { notification }) => {
+  notification.success('email sent 👏')
+}
