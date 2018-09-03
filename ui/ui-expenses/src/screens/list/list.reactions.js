@@ -79,5 +79,5 @@ export const setEmails = ({ payload }, store) => {
 }
 
 export const notificationEmail = (action, store, { notification }) => {
-  notification.success('email sended 👏')
+  notification.success('email sent 👏')
 }
