@@ -246,6 +246,37 @@ module.exports = (ctx) => {
         .text('.')
     }
 
+    // IBAN / BIC
+    y = MAX_HEIGHT - 95 - (height * 4)
+    x = MARGIN * 3
+    width = MAX_WIDTH - (6 * MARGIN)
+
+    doc.font('bold')
+    doc.rect(x, y, width, height).fill('#a2a2a2').stroke('black')
+
+    doc.fill('white')
+    doc.rect(x, y, width, height).stroke()
+    doc.text('IBAN', x + MARGIN, y + 4, { width: width - (MARGIN * 2), align: 'left' })
+
+    x += 360
+    width = 120
+    doc.rect(x, y, width + 12, height).stroke('black')
+    doc.text('BIC', x, y + 4, { width: width - 5, align: 'right' })
+
+    y += MARGIN
+    x = MARGIN * 3
+    doc.fill('black')
+    doc.font('regular')
+    width = MAX_WIDTH - (6 * MARGIN)
+    doc.rect(x, y, width, height).stroke()
+    doc.text(`${process.env.BANK_IBAN}`, x + MARGIN, y + 4, { width: width - (MARGIN * 2), align: 'left' })
+
+    x += 360
+    width = 120
+    doc.rect(x, y, width + 12, height).stroke('black')
+    doc.text(`${process.env.BANK_BIC}`, x, y + 4, { width: width - 5, align: 'right' })
+
+
     // CGV
     doc.fontSize(6)
     doc.text(
