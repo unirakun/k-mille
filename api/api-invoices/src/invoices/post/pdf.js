@@ -139,8 +139,12 @@ module.exports = (ctx) => {
         value: FORMATTER.format(total),
       },
       {
-        label: 'TVA',
+        label: 'Taux TVA',
         value: '20%',
+      },
+      {
+        label: 'TVA',
+        value: FORMATTER.format(total * 0.2),
       },
       {
         bold: true,
