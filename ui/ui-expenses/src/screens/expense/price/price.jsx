@@ -10,13 +10,25 @@ const Price = ({
   price,
   selected,
   onChange,
-}) => (
-  <label htmlFor={price} className={classes.price}>
-    <input type="radio" id={price} name="price" className={classes.input} defaultChecked={selected} onChange={onChange} />
-    <div>{FORMATTER.format(price)}</div>
-  </label>
-)
+}) => {
+  if (!price) {
+    return (
+      <div>
+        <label htmlFor="other">
+          Autre:
+          <input id="other" type="text" onChange={onChange} />
+        </label>
+      </div>
+    )
+  }
 
+  return (
+    <label htmlFor={price} className={classes.price}>
+      <input type="radio" id={price} name="price" className={classes.input} defaultChecked={selected} onChange={onChange} />
+      <div>{FORMATTER.format(price)}</div>
+    </label>
+  )
+}
 Price.propTypes = {
   classes: PropTypes.object,
   price: PropTypes.number.isRequired,
