@@ -40,6 +40,7 @@ const Expense = ({
         {prices.map(price => (
           <Price key={price} price={price} selected={price === prices[0]} />
         ))}
+        <Price />
       </div>
     </div>
     <div className={classes.block}>
