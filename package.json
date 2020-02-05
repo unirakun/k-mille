@@ -7,8 +7,8 @@
     "run:start": ". ./env.sh && lerna run start --stream --scope",
     "start:invoices": "npm run run:start *-invoices",
     "start:expenses": "npm run run:start *-expenses",
-    "docker:invoices": "docker build -t alakarte/invoices --build-arg app=invoices . --rm=true",
-    "docker:expenses": "docker build -t alakarte/expenses --build-arg app=expenses . --rm=true",
+    "docker:invoices": "docker build -t unirakun/invoices --build-arg app=invoices . --rm=true",
+    "docker:expenses": "docker build -t unirakun/expenses --build-arg app=expenses . --rm=true",
     "build:docker": "run-p docker:*",
     "lint:js": "eslint **/**/src/ --ext js,jsx",
     "ci": "npm run lint:js"
